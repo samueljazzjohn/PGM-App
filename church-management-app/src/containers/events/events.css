@@ -1,0 +1,41 @@
+.pgm__events{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.pgm__events_header{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.pgm__events_header p{
+    text-align: center ;
+    color: var(--color-subtext);
+    font-weight: bold;
+    font-family: var(--font-family);
+}
+
+
+.pgm__events_header h1{
+    text-align: center ;
+    font-weight: bold;
+    font-family: var(--font-family);
+    
+}
+
+.pgm__events-header-bar{
+    width: 100px;
+    height: 3px;
+    background: var(--gradient-bar);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 0.25rem;
+}
+
+.pgm__events_body{
+    display: flex;
+    flex-direction: row;
+    margin: 4rem 8rem;
+}

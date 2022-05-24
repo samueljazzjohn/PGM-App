@@ -1,0 +1,23 @@
+.pgm__event-container{
+    margin: 1rem;
+}
+
+.pgm__event-card-text{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.pgm__event-card-text-date{
+    color: var(--color-text);
+}
+
+.pgm__event-card-text-place{
+    color: var(--color-text);
+}
+
+.pgm__event-card-title{
+    text-align: center;
+    color: var(--color-text);
+
+}
