@@ -1,4 +1,4 @@
-import {About,Contact,Events,Footer,Header,Donate} from "./containers"
+import {About,Contacts,Events,Footer,Header,Donate} from "./containers"
 import {NavBar} from "./components"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -14,7 +14,7 @@ function App() {
       <About />
       <Events />
       <Donate />
-      <Contact />
+      <Contacts />
       <Footer />
     </div>
   );
