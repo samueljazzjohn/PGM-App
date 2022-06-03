@@ -1,7 +1,6 @@
 import {About,Contacts,Events,Footer,Header,Donate} from "./containers"
 import {NavBar} from "./components"
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import './App.css';
 
 function App() {

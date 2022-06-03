@@ -5,7 +5,7 @@ import { Form, Col, Row, FloatingLabel,Button } from 'react-bootstrap'
 
 const Contacts = () => {
   return (
-    <div className="pgm__contact-container section__margin">
+    <div className="pgm__contact-container section__margin" id='contact'>
       <div className="pgm__contact-details-container">
         <div className="pgm__contact-details-header">
           <h1 className='gradient__text'>Our Contacts</h1>

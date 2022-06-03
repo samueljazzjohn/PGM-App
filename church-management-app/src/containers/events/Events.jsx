@@ -4,7 +4,7 @@ import './events.css'
 
 const Events = () => {
   return (
-    <div className='pgm__events section__padding'>
+    <div className='pgm__events section__padding' id='events'>
       <div className='pgm__events_header'>
         <p>Our Events</p>
         <h1 className='gradient__text'>Upcoming Events</h1>
