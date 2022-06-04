@@ -25,13 +25,13 @@ const LoginModel = () => {
             className="pgm__login-model-container fade"
             show={show}
             onHide={() => dispatch(loginModelClose())}
-            tabindex="-1"
+            tabIndex="-1"
             backdrop="static"
             keyboard={false}
         >
             {/* <Modal.Header closeButton className="pgm__login-model-header">
                     </Modal.Header> */}
-            <Modal.Title closeButton className="pgm__login-model-header">Login</Modal.Title>
+            <Modal.Title className="pgm__login-model-header">Login</Modal.Title>
             <Modal.Body className="pgm__login-model-body">
                 <Form className="pgm__login-model-form">
                 {/* <Form.Label className='pgm__contact-form-label'>Username</Form.Label> */}
