@@ -1,26 +1,36 @@
-import createError from 'http-errors';
-import express, { json, urlencoded, static } from 'express';
-import { join } from 'path';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+var connectDB=require('./config/dbconnection')
 
-import indexRouter from './routes/index';
-import usersRouter from './routes/users';
+connectDB
+
+var indexRouter = require('./routes/index');
+var adminRouter = require('./routes/admin');
+var studentRouter = require('./routes/student');
+var churchRouter = require('./routes/church');
+var teacherRouter = require('./routes/teacher');
 
 var app = express();
 
 // view engine setup
-app.set('views', join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
 
 app.use(logger('dev'));
-app.use(json());
-app.use(urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(static(join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/admin', adminRouter);
+app.use('/student', studentRouter);
+app.use('/church', churchRouter);
+app.use('/teacher', teacherRouter);
+
 
 // // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
@@ -38,4 +48,4 @@ app.use('/users', usersRouter);
 //   res.render('error');
 // });
 
-export default app;
+module.exports = app;
