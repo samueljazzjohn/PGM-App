@@ -14,7 +14,6 @@ const LoginModel = () => {
 
     const changeHandler=(event)=>{
         console.log(event.target)
-        // const [name,value]=event.target
         setData({...data,[event.target.name]:[event.target.value]})
     }
 
@@ -47,12 +46,6 @@ const LoginModel = () => {
                     
                 </Form>
             </Modal.Body>
-            {/* <Modal.Footer className="pgm__login-model-footer">
-                        <Button variant="secondary" onClick={()=>dispatch(loginModelClose())}>
-                            Close
-                        </Button>
-                        <Button variant="primary">Understood</Button>
-                    </Modal.Footer> */}
         </Modal>
         // </div>
     )
