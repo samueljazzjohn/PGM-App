@@ -32,7 +32,7 @@ const NavBar = () => {
             </Nav>
             <div className="pgm__navbar-sign-container">
             <p><a onClick={handleClick} >Sign in</a></p>
-            <Button className="button" type='button' onClick={handleClick}>Sign out</Button>
+            <Button className="button" type='button' onClick={handleClick}>Register</Button>
           </div>
           </Navbar.Collapse>
         </Container>
