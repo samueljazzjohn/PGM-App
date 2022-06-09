@@ -17,7 +17,7 @@ export const loginModelSlice = createSlice({
     }
 })
 
-export const selectShow = (state) => state.loginModel.show
+export const loginModelShow = (state) => state.loginModel.show
 
 export const {loginModelOpen,loginModelClose} = loginModelSlice.actions;
 

@@ -1,9 +1,11 @@
 import React from 'react'
 import LoginModel from '../loginModel/LoginModel'
+import RegistrationModel from '../RegistrationModel.jsx/RegistrationModel'
 import './navbar.css'
 import { Navbar,Container,Nav,Button } from "react-bootstrap"
 import {useSelector,useDispatch} from 'react-redux'
-import { loginModelOpen,selectShow } from '../../features/loginModel/loginModelSlice'
+import { loginModelOpen } from '../../features/loginModel/loginModelSlice'
+import { registerModelOpen } from '../../features/registrationModel/registrationModelSlice'
 
 const NavBar = () => {
 
@@ -17,6 +19,7 @@ const NavBar = () => {
   return (
     <div className="pgm__navbar gradient__bg">
       <LoginModel />
+      <RegistrationModel />
       <Navbar className="pgm__navbar-container" expand="lg">
         <Container>
           <Navbar.Brand href="#home" className="pgm__navbar-logo">PGM</Navbar.Brand>
@@ -32,7 +35,7 @@ const NavBar = () => {
             </Nav>
             <div className="pgm__navbar-sign-container">
             <p><a onClick={handleClick} >Sign in</a></p>
-            <Button className="button" type='button' onClick={handleClick}>Register</Button>
+            <Button className="button" type='button' onClick={()=>{dispatch(registerModelOpen())}}>Register</Button>
           </div>
           </Navbar.Collapse>
         </Container>

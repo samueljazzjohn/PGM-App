@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import './loginModel.css'
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { loginModelOpen, loginModelClose, selectShow } from '../../features/loginModel/loginModelSlice'
+import { loginModelOpen, loginModelClose, loginModelShow } from '../../features/loginModel/loginModelSlice'
 
 
 const LoginModel = () => {
@@ -12,7 +12,7 @@ const LoginModel = () => {
     const [error,setError]=useState();
     const [iserror,setIserror]=useState(false);
 
-    const show = useSelector(selectShow)
+    const show = useSelector(loginModelShow)
     const dispatch = useDispatch()
 
 
@@ -81,14 +81,14 @@ const LoginModel = () => {
                          :
                               null
                      }
-                    <Form.Control type='text' className='pgm__contact-form-inputText' placeholder="Username" name="username" value={username} onChange={changeHandler} autoComplete="off"/>
+                    <Form.Control type='text' className='pgm__contact-form-inputText' placeholder="Email" name="username" value={username} onChange={changeHandler} autoComplete="off"/>
                     {/* <Form.Label className='pgm__contact-form-label'>Password</Form.Label> */}
                     <Form.Control type='password' className='pgm__contact-form-inputText' placeholder="Password" name="password" value={password} onChange={changeHandler} autoComplete="off" />
                     <div className="pgm__login_model_button_container">
                         <Button className="pgm__login-model-button" variant="secondary" onClick={() => dispatch(loginModelClose())}>
                         back
-                    </Button>
-                    <Button className="pgm__login-model-button" variant="primary" type='submit' >Login</Button>
+                        </Button>
+                        <Button className="pgm__login-model-button" variant="primary" type='submit' >Login</Button>
                     </div>
                     
                 </Form>
