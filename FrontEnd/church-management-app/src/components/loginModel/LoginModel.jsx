@@ -5,9 +5,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { loginModelOpen, loginModelClose, loginModelShow } from '../../features/loginModel/loginModelSlice'
 import { fetchUser, login, logout, selectError } from '../../features/user/userSlice'
-import { toast } from 'react-toastify'
 import validator from 'validator'
 import { selectLoading } from '../../features/user/userSlice'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
 
 
 const LoginModel = () => {
