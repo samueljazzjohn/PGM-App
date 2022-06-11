@@ -3,21 +3,14 @@ var router = express.Router();
 const CourseModel = require('../models/courseModel')
 
 /* POST Course details. */
-router.post('/add-course', function(req, res, next) {
+router.post('/add-course', async(req, res, next)=> {
   console.log(req.body)
-  const course=new CourseModel({
-    courseName:req.body.courseName,
-    duration:req.body.duration
+
+  await CourseModel.create(req.body).then(()=>{
+    res.status(200).json({'Message':'success'})
+  }).catch((err)=>{
+    res.status(401).json({"Message":err})
   })
-
-  course.save((err,doc)=>{
-    if(err) return res.status(401).send(err)
-
-    return res.status(200).json(doc)
-  })
-
-  res.status(400).json({'Message':'failed'})
-
 });
 
 module.exports = router;

@@ -14,7 +14,7 @@ const studentSchema = new mongoose.Schema({
     },
     // batch:{type:Date,required:true},
     userId:{type:mongoose.Schema.Types.ObjectId,ref:'userModel'},
-    courseId:{type:mongoose.Schema.Types.ObjectId,ref:'courseModel'}
+    courseId:{type:mongoose.Schema.Types.ObjectId,ref:'courseModel',required:true}
 },{collection:'Student'})
 
 module.exports = mongoose.model('studentModel',studentSchema)

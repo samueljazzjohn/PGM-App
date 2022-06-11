@@ -11,6 +11,8 @@ router.get('/', function (req, res, next) {
   res.send('Hello World');
 });
 
+
+// Registration End point
 router.post('/register', (req, res, next) => {
   console.log(req.body)
   console.log('register')
@@ -31,8 +33,8 @@ router.post('/register', (req, res, next) => {
       if (err) return res.status(403).json({ 'msg': 'database error' })
 
       if (req.body.type === 'church') {
-
-        const church = new churchModel({
+        console.log('church')
+        churchModel.create({
           pastorlName: req.body.lname,
           pastorfName: req.body.fname,
           members: req.body.members,
@@ -45,18 +47,18 @@ router.post('/register', (req, res, next) => {
             phone: req.body.phone
           },
           userId: doc._id
+        }).then(()=>{
+          return res.status(200).json({"Message":"Success"})
+        }).catch( async(err)=>{
+          console.log(err)
+          await UserModel.deleteOne({_id:doc._id})
+          return res.status(401).json({"Message":err})
         })
-    
-        church.save((err, doc) => {
-          if (err) return res.status(403).json({ 'msg': 'database error' })
-          console.log(doc)
-          return  res.status(201).json({ "Message": "success" })
-        })
-        await UserModel.deleteOne({_id:doc._id})
 
       }else  if (req.body.type === 'student') {
 
-        const student = new StudentModel({
+        console.log('student')
+        StudentModel.create({
           fname: req.body.lname,
           lname: req.body.fname,
           course: req.body.members,
@@ -69,16 +71,17 @@ router.post('/register', (req, res, next) => {
             phone: req.body.phone
           },
           userId: doc._id
+        }).then(()=>{
+          return res.status(200).json({"Message":"Success"})
+        }).catch( async(err)=>{
+          console.log(err)
+          await UserModel.deleteOne({_id:doc._id})
+          return res.status(401).json({"Message":err})
         })
-    
-        student.save((err, doc) => {
-          if (err) return res.status(403).json({ 'msg': 'database error' })
-          console.log(doc)
-          return  res.status(201).json({ "Message": "success" })
-        })
-        await UserModel.deleteOne({_id:doc._id})
+
       }else{
-        const teacher = new TeacherModel({
+        console.log('teacher')
+        TeacherModel.create({
           fname: req.body.lname,
           lname: req.body.fname,
           experience: req.body.experience,
@@ -91,37 +94,36 @@ router.post('/register', (req, res, next) => {
             phone: req.body.phone
           },
           userId: doc._id
+        }).then(()=>{
+          return res.status(200).json({"Message":"Success"})
+        }).catch( async(err)=>{
+          console.log(err)
+          await UserModel.deleteOne({_id:doc._id})
+          return res.status(401).json({"Message":err})
         })
-    
-        teacher.save((err, doc) => {
-          if (err) return res.status(403).json({ 'msg': 'database error' })
-          console.log(doc)
-          return  res.status(201).json({ "Message": "success" })
-        })
-        await UserModel.deleteOne({_id:doc._id})
       }
     })
   })
-  return res.status(403).json({'Message':'Failed'})
-
 })
 
+
+// Login end point
 router.post('/login', function (req, res, next) {
   console.log(req.body)
   UserModel.findOne({ email: req.body.email }, async (err, doc) => {
-    if (err) return res.status(500).json({ "msg": err });
+    if (err) return res.status(400).json({ "Message": err });
     if (doc == null) {
-      return res.status(403).json({ "msg": "Email not registered" });
+      return res.status(403).json({ "Message": "Email not registered" });
     }
 
     console.log(doc)
     if (doc.status === 'pending') {
-      return res.status(402).json({ "msg": "Your account is not approved by admin" })
+      return res.status(402).json({ "Message": "Your account is not approved by admin" })
     }
 
     bcrypt.compare(req.body.password, doc.password, (err, res) => {
-      if (err) return res.status(400).json(err)
-      if (!res) return res.status(401).json({ "msg": "Invalid password" })
+      if (err) return res.status(402).json({"Message":err})
+      if (!res) return res.status(401).json({ "Message": "Invalid password" })
     })
     // console.log(validatePassword)
 
