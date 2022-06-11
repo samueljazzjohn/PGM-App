@@ -3,7 +3,9 @@ import './admin.css'
 
 const Admin = () => {
   return (
-    <div>Admin</div>
+    <div className="pgm__admin_dashboard_container">
+      Admin
+    </div>
   )
 }
 

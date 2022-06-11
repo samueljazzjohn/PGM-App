@@ -3,7 +3,9 @@ import './church.css'
 
 const Church = () => {
   return (
-    <div>Church</div>
+    <div className="pgm__church_dashboard_container">
+      Church
+    </div>
   )
 }
 

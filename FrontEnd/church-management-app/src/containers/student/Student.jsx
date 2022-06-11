@@ -3,7 +3,9 @@ import './student.css'
 
 const Student = () => {
   return (
-    <div>Student</div>
+    <div className="pgm__student_dashboard_container">
+      Student
+    </div>
   )
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import LoginModel from '../loginModel/LoginModel'
-import RegistrationModel from '../RegistrationModel.jsx/RegistrationModel'
+import RegistrationModel from '../registrationModel/RegistrationModel'
 import './navbar.css'
 import { Navbar,Container,Nav,Button } from "react-bootstrap"
 import {useSelector,useDispatch} from 'react-redux'

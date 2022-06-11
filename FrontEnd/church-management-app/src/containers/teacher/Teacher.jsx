@@ -3,7 +3,9 @@ import './teacher.css'
 
 const Teacher = () => {
   return (
-    <div>Teacher</div>
+      <div className="pgm__teacher_dashboar">
+        Teacher
+      </div>
   )
 }
 

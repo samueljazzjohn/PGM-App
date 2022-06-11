@@ -5,6 +5,8 @@ export { default as Event } from "./event/Event"
 export { default as ContactBar } from "./contactBar/ContactBar"
 export { default as LoginModel } from "./loginModel/LoginModel"
 export { default as RegistrationModel } from "./registrationModel/RegistrationModel"
+export { default as DashboardTab } from "./dashboardTab/DashboardTab"
+
 
 
 

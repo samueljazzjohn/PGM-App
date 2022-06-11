@@ -1,0 +1,5 @@
+.pgm__admin_dashboard_container{
+    color: var(--color-text);
+    display: flex;
+    flex-direction: row;
+}
