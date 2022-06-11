@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 
 const churchSchema = new mongoose.Schema({
-    pastorName:{type:String,required:true},
+    pastorfName:{type:String,required:true},
+    pastorlName:{type:String,required:true},
     members:{type:Number,require:true},
     committe:{
         president:String,

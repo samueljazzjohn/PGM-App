@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
+const dotenv = require('dotenv');
+dotenv.config();
 
-
-var uri = "mongodb+srv://jazzjohn:Jazz2%401999@where2buy.qgezx.mongodb.net/church-management?retryWrites=true&w=majority"
+const uri = process.env.MONGODB_URI
 
 mongoose.connect(uri,{ useNewUrlParser: true, useUnifiedTopology: true },(err,db)=>{
     if(err) throw err;
