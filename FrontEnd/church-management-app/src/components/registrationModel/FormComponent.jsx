@@ -22,9 +22,9 @@ const FormComponent = () => {
 
     const onSubmit=(data)=>{
         const prev=location.state
-        const newData={...data,'username':prev.username,'password':prev.pass,'type':prev.type,'email':prev.email}
-        console.log(newData)
-        dispatch(registerUser({newData,navigate,toast}))
+        data={...data,'username':prev.username,'password':prev.pass,'type':prev.type,'email':prev.email}
+        console.log(data)
+        dispatch(registerUser({data,navigate,toast}))
     }
 
     // const renderField=()=>{
