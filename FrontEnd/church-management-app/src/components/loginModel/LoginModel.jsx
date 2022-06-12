@@ -9,7 +9,6 @@ import validator from 'validator'
 import { selectLoading } from '../../features/user/userSlice'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-toast.configure()
 
 
 const LoginModel = () => {
