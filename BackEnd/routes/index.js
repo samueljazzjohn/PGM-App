@@ -5,6 +5,7 @@ const UserModel = require('../models/userModel')
 const churchModel = require('../models/churchModel')
 const StudentModel = require('../models/studentModel')
 const TeacherModel = require('../models/teacherModel')
+const CourseModel = require('../models/courseModel')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -30,7 +31,7 @@ router.post('/register', (req, res, next) => {
     })
 
     user.save( async(err, doc) => {
-      if (err) return res.status(403).json({ 'msg': 'database error' })
+      if (err) return res.status(403).json({ 'msg': err })
 
       if (req.body.type === 'church') {
         console.log('church')
@@ -136,5 +137,15 @@ router.post('/login', function (req, res, next) {
     res.status(202).json(data)
   })
 });
+
+
+// Get all course details
+router.get('/course',async(req,res,next)=>{
+  data=await CourseModel.find()
+  if(!data){
+    return res.status(401).json({"Message":failed})
+  }
+  return res.status(200).json(data)
+})
 
 module.exports = router;
