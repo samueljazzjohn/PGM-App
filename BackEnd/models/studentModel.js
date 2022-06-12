@@ -12,7 +12,8 @@ const studentSchema = new mongoose.Schema({
         pincode:String,
         phone:String,
     },
-    // batch:{type:Date,required:true},
+    aadhar:{type:String,required:true},
+    batch:{type:Date},
     userId:{type:mongoose.Schema.Types.ObjectId,ref:'userModel'},
     courseId:{type:mongoose.Schema.Types.ObjectId,ref:'courseModel',required:true}
 },{collection:'Student'})

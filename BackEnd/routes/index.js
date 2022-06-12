@@ -125,11 +125,6 @@ router.post('/login', function (req, res, next) {
       if (err) return res.status(402).json({"Message":err})
       if (!res) return res.status(401).json({ "Message": "Invalid password" })
     })
-    // console.log(validatePassword)
-
-    // if(!validPassword){
-    //   return res.status(400).json({"msg":"Invalid password"})
-    // }
 
     const data = {
       userId: doc._id,

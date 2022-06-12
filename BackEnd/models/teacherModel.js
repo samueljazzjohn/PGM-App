@@ -12,6 +12,7 @@ const teacherSchema = new mongoose.Schema({
         pincode:String,
         phone:String,
     },
+    aadhar:{type:String,required:true},
     experience:{type:Number,required:true},
     userId:{type:mongoose.Schema.Types.ObjectId,ref:'userModel'}
 },{collection:'Teacher'})
