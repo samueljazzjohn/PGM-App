@@ -36,3 +36,7 @@
 .pgm__register_model_button_container{
     float: right;
 }
+
+.pgm__register_error{
+    color: rgb(191, 23, 23);
+}

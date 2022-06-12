@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Form, Row, Col, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,16 +10,31 @@ import { selectcategory } from '../../features/category/categorySlice'
 import { registerUser } from '../../features/user/registerSlice'
 import { selectLoading } from '../../features/user/registerSlice'
 import './RegistrationModel.css'
+import axios from 'axios'
 
 const FormComponent = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm()
+
+  const [courses,setCourses]=useState()
 
   const loading = useSelector(selectLoading)
   const category = useSelector(selectcategory)
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const location = useLocation();
+
+   useEffect(() => {
+    if(category=='student'){
+      axios.get("http://localhost:4000/course").then((res)=>{
+        setCourses(res.data)
+        // console.log("courses"+courses)
+      }).catch((err)=>{
+        console.log(err.message)
+      })
+    }
+   },[category])
+   
 
   const onSubmit = (data) => {
     const prev = location.state
@@ -54,14 +69,14 @@ const FormComponent = () => {
               <Form.Select aria-label="Default select" className='pgm__contact-form-inputText' {...register('course', {
                 required: true,
                 validate: (course) => {
-                  if (course != "--select course--") {
+                  if (course == "--select course--") {
                     return "Select a course"
                   }
                 }
               })}>
                 <option>--select course--</option>
-
-                <option value="3">BTH</option>
+                {courses && console.log(courses)}
+                { courses && courses.map((course)=><option value={course._id}>{course.courseName}</option>)}
               </Form.Select>
 
             }
@@ -78,7 +93,8 @@ const FormComponent = () => {
           </Col>
           <Col className='sm-10 col-md-6'>
             <Form.Control type='text' className='pgm__contact-form-inputText' placeholder='phone number' {...register('phone', {
-              required: true, valueAsNumber: "Please enter a valid phone number", minLength: { value: 10, message: "Your phone number must be atleast 10 numbers" },
+              required: true, minLength: { value: 10, message: "Your phone number must be atleast 10 numbers" },
+              //  valueAsNumber: "Please enter a valid phone number",
               maxLength: { value: 10, message: "Enter a valid phone" }
             })} />
             {errors.phone && <span className="pgm__register_error" role='alert'>{errors.phone.message}</span>}
