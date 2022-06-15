@@ -45,6 +45,10 @@
     border: none !important;
 }
 
+.pgm__admin_show_course_header{
+    padding-top: 1rem;
+}
+
 .pgm__admin_add_course_form_container{
     display: flex;
     justify-content: center;
@@ -73,4 +77,41 @@
 
 .pgm__admin_form_error{
     color: rgb(191, 23, 23);
+}
+
+.pgm__admin_show{
+    margin-top: 3rem;
+}
+
+.pgm__admin_add_event_button{
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    background-color: rgb(58, 181, 58) !important;
+    border: none !important;
+    float: right;
+}
+.pgm__admin_add_event_icon{
+    color: white !important;
+    margin-left: 0.4rem;
+}
+
+.pgm__admin_add_event_form_button{
+    margin: 1rem 3rem 1rem 3rem !important;
+    width: 100% !important;
+    background-color: rgb(58, 181, 58) !important;
+    border: none !important;
+}
+
+.pgm__admin_show_event_header{
+    padding-top: 1rem;
+}
+
+.pgm__admin_add_event_form_container{
+    display: flex;
+    justify-content: center;
+}
+
+.pgm__admin_add_event_form{
+    margin-top: 2rem;
+    width: 80%;
 }
