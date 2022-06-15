@@ -1,0 +1,21 @@
+.pgm__show_card_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--color-bg);
+    padding: 0.7rem 1rem 0.7rem 2rem;
+    margin: 1rem 2rem 1rem 0;
+    width: 100%;
+    border-radius: 10px;
+    -webkit-box-shadow: -9px 9px 22px -7px rgba(8,10,56,1);
+    -moz-box-shadow: -9px 9px 22px -7px rgba(8,10,56,1);
+    box-shadow: -9px 9px 22px -7px rgba(8,10,56,1);
+}
+
+.pgm__show_card_body{
+    font-size: 15px;
+}
+
+.pgm__show_card_icon{
+    cursor: pointer;
+}
