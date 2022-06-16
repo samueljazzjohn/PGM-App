@@ -1,0 +1,28 @@
+.pgm__request_card_container{
+    width: 100%;
+}
+
+.pgm__request_card{
+    background-color: var(--color-bg) !important;
+    margin: 2rem;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* .pgm__request_card:hover{
+    background-color: var(--color-text) !important;
+    color:var(--color-text) !important;
+} */
+
+.pgm__request_card p{
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.pgm__request_card img{
+    height: 70px;
+    width: 70px;
+}
