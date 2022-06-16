@@ -19,3 +19,44 @@
 .pgm__show_card_icon{
     cursor: pointer;
 }
+
+.pgm__request_show_card{
+    background-color: var(--color-bg) !important;
+    border-radius: 10px !important;
+    -webkit-box-shadow: -9px 9px 22px -7px rgba(8,10,56,1);
+    -moz-box-shadow: -9px 9px 22px -7px rgba(8,10,56,1);
+    box-shadow: -9px 9px 22px -7px rgba(8,10,56,1);
+}
+
+.pgm__show_request_bar_container{
+    width: 100%;
+}
+
+.pgm__request_show_card_content{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    /* padding: 0 1rem 0 1rem;
+    margin: 0.5rem 0 0.5rem 0; */
+}
+
+.card-body{
+    padding-top: 0.6rem !important;
+    padding-bottom: 0 !important;
+}
+
+.pgm__request_show_card_content p{
+    margin-left: 1rem;
+    margin-top: 0.2rem;
+}
+
+.pgm__show_request_button{
+    display: flex;
+    flex-direction: row;
+}
+
+.pgm__show_request_button Button{
+    margin-right: 1rem ;
+    padding-top: 0.2rem !important;
+    height: 2rem !important;
+}
