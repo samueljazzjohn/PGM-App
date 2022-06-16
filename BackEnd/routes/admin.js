@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const CourseModel = require('../models/courseModel')
 const EventModel = require('../models/eventModel')
+const UserModel = require('../models/userModel')
 
 /* POST Course details. */
 router.post('/add-course', async(req, res, next)=> {
@@ -49,6 +50,39 @@ router.delete('/remove-event',async(req,res,next)=>{
     return res.status(401).json({"Message":"failed"})
   }
   res.status(201).json({"Message":"success"})
+})
+
+// Get church details
+router.get('/church-details',async(req,res,next)=>{
+  data=await UserModel.find({type:"church",status:"Pending"})
+  console.log(data)
+  if(!data){
+    return res.status(401).json({'Message':'failed'})
+  }
+  res.status(201).json(data)
+  
+})
+
+// Get student details
+router.get('/student-details',async(req,res,next)=>{
+  data=await UserModel.find({type:"student",status:"Pending"})
+  console.log(data)
+  if(!data){
+    return res.status(401).json({'Message':'failed'})
+  }
+  res.status(201).json(data)
+  
+})
+
+// Get teacher details
+router.get('/teacher-details',async(req,res,next)=>{
+  data=await UserModel.find({type:"teacher",status:"Pending"})
+  console.log(data)
+  if(!data){
+    return res.status(401).json({'Message':'failed'})
+  }
+  res.status(201).json(data)
+  
 })
 
 module.exports = router;
