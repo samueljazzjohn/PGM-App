@@ -115,3 +115,10 @@
     margin-top: 2rem;
     width: 80%;
 }
+
+/* Manage Requests */
+.pgm__manage_request_home_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

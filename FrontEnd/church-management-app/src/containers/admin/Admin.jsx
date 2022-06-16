@@ -13,7 +13,7 @@ import { GoDiffAdded } from 'react-icons/go'
 import { BiAlarmAdd, BiChurch } from 'react-icons/bi'
 import { MdOutlineManageAccounts, MdDetails } from 'react-icons/md'
 import { GiTeacher } from 'react-icons/gi'
-import ManageRequest from './ManageRequest'
+import ManageRequest from './ManageRequest/ManageRequest'
 import {DashboardHometab} from '../../components'
 
 
@@ -72,13 +72,16 @@ const Admin = () => {
         </div>
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path='/admin/add-course' element={<AddCourse />} />
+          <Route path='/add-course' element={<AddCourse />} />
           <Route path='/add-event' element={<AddEvent />} />
           <Route path='/add-course' element={<AddCourse />} />
           <Route path='/church-details' element={<ChurchDetails />} />
           <Route path='/student-details' element={<StudentDetails />} />
           <Route path='/tacher-details' element={<TeacherDetails />} />
-          <Route path='/manage-request' element={<ManageRequest />} />
+          <Route path='/manage-request/*' element={<ManageRequest />} />
+          {/* <Route path='/student-request' element={< />} />
+          <Route path='/teacher-request' element={< />} />
+          <Route path='/church-request' element={< />} /> */}
         </Routes>
       </div>
     </div>
