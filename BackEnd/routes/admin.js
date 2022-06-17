@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
+const mongoose = require('mongoose');
 const CourseModel = require('../models/courseModel')
 const EventModel = require('../models/eventModel')
 const UserModel = require('../models/userModel')
+const ChurchModel = require('../models/churchModel')
 
 /* POST Course details. */
 router.post('/add-course', async(req, res, next)=> {
@@ -84,5 +86,19 @@ router.get('/teacher-details',async(req,res,next)=>{
   res.status(201).json(data)
   
 })
+
+// Get church details
+router.get('/church-data',async(req,res,next)=>{
+  let data={type:req.query.type}
+  church=await ChurchModel.find({userId:mongoose.Types.ObjectId(req.query.id)})
+  if(!church){
+    return res.status(401).json({'Message':'failed'})
+  }
+  data={...data,church}
+  console.log(data)
+  res.status(201).json(data)
+  
+})
+
 
 module.exports = router;
