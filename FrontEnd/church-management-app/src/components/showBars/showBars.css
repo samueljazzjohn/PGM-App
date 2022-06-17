@@ -60,3 +60,27 @@
     padding-top: 0.2rem !important;
     height: 2rem !important;
 }
+
+/* Show Model design */
+
+.pgm__show_model .pgm__show-model-header,.pgm__show-model-body,.pgm__show-model-footer{
+    color: var(--color-text) !important;
+    background-color: var(--color-blog) !important;
+}
+
+.pgm__show-model-button{
+    width: 4rem !important;
+    background-color: var(--color-btn) !important;
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+}
+
+.pgm__show-model-header{
+    padding: 1rem;
+    text-align: center;
+}
+
+.pgm__show-model-body{
+    display: flex;
+    flex-direction: column;
+}
