@@ -69,13 +69,20 @@
 }
 
 .pgm__show-model-button{
+    /* float: right !important; */
     width: 4rem !important;
     background-color: var(--color-btn) !important;
     margin-top: 1.5rem;
-    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
-.pgm__show-model-header{
+.pgm__show-model-button_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.pgm__show-model-header{    
     padding: 1rem;
     text-align: center;
 }
@@ -83,4 +90,5 @@
 .pgm__show-model-body{
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }

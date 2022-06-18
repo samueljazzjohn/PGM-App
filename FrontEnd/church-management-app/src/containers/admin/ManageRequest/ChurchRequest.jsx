@@ -22,7 +22,7 @@ const ChurchRequest = () => {
   return (
     <div className="pgm__church_request_container">
       <ShowModel />
-      {churchDetails && churchDetails.map((church)=> <ShowRequestBar key={church._id} name={church.username} state={setIsDataSet} id={church._id} type={church.type} />)}
+      {churchDetails && churchDetails.map((church)=> <ShowRequestBar key={church._id} email={church.email} name={church.username} state={setIsDataSet} id={church._id} type={church.type} />)}
     </div>
   )
 }

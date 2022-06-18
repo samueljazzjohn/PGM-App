@@ -132,9 +132,9 @@ const FormComponent = () => {
           </Col>
           <Col className='sm-10 md-6'>
             {category !== 'church' &&
-              <Form.Control type='text' className='pgm__contact-form-inputText' placeholder='Aadhar Number' {...register('Aadhar', { required: true, minLength: { value: 12, message: "Enter valid aadhar" }, maxLength: { value: 12, message: "Enter valid aadhar" } })} />
+              <Form.Control type='text' className='pgm__contact-form-inputText' placeholder='Aadhar Number' {...register('aadhar', { required: true, minLength: { value: 12, message: "Enter valid aadhar" }, maxLength: { value: 12, message: "Enter valid aadhar" } })} />
             }
-            {errors.Aadhar && <span className="pgm__register_error" role='alert'>{errors.Aadhar.message}</span>}
+            {errors.aadhar && <span className="pgm__register_error" role='alert'>{errors.aadhar.message}</span>}
           </Col>
 
         </Row>

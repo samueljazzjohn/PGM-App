@@ -4,6 +4,7 @@ import * as api from '../../api'
 const initialState = {
     loading:false,
     church:null,
+    mailSend:false,
     error:null
 }
 
