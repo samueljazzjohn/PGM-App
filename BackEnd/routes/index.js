@@ -6,6 +6,8 @@ const churchModel = require('../models/churchModel')
 const StudentModel = require('../models/studentModel')
 const TeacherModel = require('../models/teacherModel')
 const CourseModel = require('../models/courseModel')
+const mailSendHelper = require("../helpers/mailSendHelper")
+const mongoose = require('mongoose')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -49,6 +51,7 @@ router.post('/register', (req, res, next) => {
           },
           userId: doc._id
         }).then(()=>{
+          mailSendHelper.registrationMail(req.body.email)
           return res.status(200).json({"Message":"Success"})
         }).catch( async(err)=>{
           console.log(err)
@@ -62,7 +65,8 @@ router.post('/register', (req, res, next) => {
         StudentModel.create({
           fname: req.body.lname,
           lname: req.body.fname,
-          course: req.body.members,
+          courseId: req.body.course,
+          aadhar:req.body.aadhar,
           address: {
             place: req.body.place,
             city: req.body.city,
@@ -73,6 +77,7 @@ router.post('/register', (req, res, next) => {
           },
           userId: doc._id
         }).then(()=>{
+          mailSendHelper.registrationMail(req.body.email)
           return res.status(200).json({"Message":"Success"})
         }).catch( async(err)=>{
           console.log(err)
@@ -86,6 +91,7 @@ router.post('/register', (req, res, next) => {
           fname: req.body.lname,
           lname: req.body.fname,
           experience: req.body.experience,
+          aadhar:req.body.aadhar,
           address: {
             place: req.body.place,
             city: req.body.city,
@@ -96,6 +102,7 @@ router.post('/register', (req, res, next) => {
           },
           userId: doc._id
         }).then(()=>{
+          mailSendHelper.registrationMail(req.body.email)
           return res.status(200).json({"Message":"Success"})
         }).catch( async(err)=>{
           console.log(err)
