@@ -28,6 +28,22 @@ let transport = nodemailer.createTransport({
               // console.log(info);
             }
         });
+    },
+
+    acceptedMail : (mail,username,id) => {
+      const mailOptions = {
+        from: 'sender@gmail.com', // Sender address
+        to: mail, // List of recipients
+        subject: 'Request Accepter', // Subject line
+        text: `Hello ${username} we are glad to inform you that you cleared the interview. Now you can login to your portal using your email and password set in registration.`, // Plain text body
+      };
+      transport.sendMail(mailOptions, async(err, info)=> {
+        if (err) {
+          console.log(err)
+          await UserModel.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.body.id) }, { status: 'Pending' })
+          return res.status(401).json({"Error":err})
+        } 
+    });
     }
   }
 
