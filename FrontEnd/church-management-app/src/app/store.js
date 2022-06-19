@@ -7,9 +7,7 @@ import categorySlice from '../features/category/categorySlice'
 import addEventSlice from '../features/admin/addEventSlice'
 import addCourseSlice from '../features/admin/addCourseSlice'
 import ShowModelSlice from '../features/showModel/ShowModelSlice'
-import churchSlice from '../features/admin/churchDetails'
-import studentSlice from '../features/admin/studentDetails'
-import teacherSlice from '../features/admin/teacherDetails'
+import detailsSlice from '../features/admin/detailsSlice'
 
 const store = configureStore({
     reducer : {
@@ -21,9 +19,7 @@ const store = configureStore({
         addCourse:addCourseSlice,
         addEvent:addEventSlice,
         showModel:ShowModelSlice,
-        church:churchSlice,
-        student:studentSlice,
-        teacher:teacherSlice
+        details:detailsSlice
     },
 })
 

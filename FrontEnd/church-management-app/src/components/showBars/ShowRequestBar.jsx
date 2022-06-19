@@ -3,20 +3,19 @@ import './showBars.css'
 import { Card, Button } from 'react-bootstrap'
 import { useSelector,useDispatch } from 'react-redux/es/exports'
 import { showModelShow,showModelOpen } from '../../features/showModel/ShowModelSlice'
-import { fetchChurch,churchData } from '../../features/admin/churchDetails'
-import { fetchStudent,studentData } from '../../features/admin/studentDetails'
-import { fetchTeacher,teacherData } from '../../features/admin/teacherDetails'
+import { useNavigate } from 'react-router-dom'
+import { fetchDetails } from '../../features/admin/detailsSlice'
 import { selectUser } from '../../features/user/userSlice'
 import {toast} from 'react-toastify'
 import axios from 'axios'
+import { Navigate } from 'react-router-dom'
 
 const ShowRequestBar = (props) => {
 
     const showModel=useSelector(showModelShow)
 
-    const churchDetails=useSelector(churchData)
-    const studentDetails=useSelector(studentData)
-    const teacherDetails=useSelector(teacherData)
+    const navigate=useNavigate()
+   
     const userDetails=useSelector(selectUser)
 
     const dispatch=useDispatch()
@@ -31,34 +30,35 @@ const ShowRequestBar = (props) => {
         }
 
         console.log(data)
-        if(props.type=='church'){
-            dispatch(fetchChurch({data})).then(()=>{
-                dispatch(showModelOpen())
-            }).catch((err)=>{
-                toast.error('Server error')
-            })
-        }
-        else if(props.type=='student'){
-            dispatch(fetchStudent({data})).then(()=>{
-                dispatch(showModelOpen())
-            }).catch((err)=>{
-                toast.error('Server error')
-            })
-        }
-        else if(props.type=='teacher'){
-            dispatch(fetchTeacher({data})).then(()=>{
-                dispatch(showModelOpen())
-            }).catch((err)=>{
-                toast.error('Server error')
-            })
-        }
+
+        dispatch(fetchDetails({data})).then(()=>{
+            dispatch(showModelOpen())
+        }).catch((err)=>{
+            toast.error("Server error")
+        })
     }
 
     const handleAccept=()=>{
+        var data={id:props.id}
 
+        axios.patch("http://localhost:4000/admin/accept-request",data).then(()=>{
+            toast.success("Request accepted successfully")
+            navigate('/admin/manage-request')
+
+        }).catch((err)=>{
+            toast.error("Server error")
+        })
     }
 
     const handleReject=()=>{
+        var data={id:props.id,type:props.type}
+        axios.delete("http://localhost:4000/admin/reject-request",{params:data}).then(()=>{
+            toast.success("Request rejected successfully")
+            navigate('/admin/manage-request')
+
+        }).catch((err)=>{
+            toast.error("Server error")
+        })
 
     }
 
@@ -70,11 +70,8 @@ const ShowRequestBar = (props) => {
                 <p>{props.name}</p>
                 <div className="pgm__show_request_button">
                     <Button variant="info" onClick={handleModel}>Show</Button>{' '}
-                    {/* {studentDetails && <Button variant="info" onClick={handleInvite} disabled={studentDetails.mailSend}>Invite</Button>}
-                    {churchDetails && <Button variant="info" onClick={handleInvite} disabled={churchDetails.mailSend}>Invite</Button>}
-                    {teacherDetails && <Button variant="info" onClick={handleInvite} disabled={teacherDetails.mailSend}>Invite</Button>} */}
-                    <Button variant="info">Accept</Button>{' '}
-                    <Button variant="info">Reject</Button>
+                    <Button variant="info" onClick={handleAccept}>Accept</Button>{' '}
+                    <Button variant="info" onClick={handleReject}>Reject</Button>
                 </div>
                 </div>
             </Card>

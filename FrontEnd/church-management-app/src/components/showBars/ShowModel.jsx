@@ -3,18 +3,21 @@ import './showBars.css'
 import { showModelShow, showModelClose } from '../../features/showModel/ShowModelSlice'
 import { useSelector, useDispatch } from 'react-redux/es/exports'
 import { Modal, Button } from 'react-bootstrap'
-import { churchData } from '../../features/admin/churchDetails'
-import { studentData } from '../../features/admin/studentDetails'
-import { teacherData } from '../../features/admin/teacherDetails'
+// import { churchData } from '../../features/admin/churchDetails'
+// import { studentData } from '../../features/admin/studentDetails'
+// import { teacherData } from '../../features/admin/teacherDetails'
+import {detailsData} from '../../features/admin/detailsSlice'
+import {toast} from 'react-toastify'
 import axios from 'axios'
 
 const ShowModel = () => {
 
   const show = useSelector(showModelShow)
 
-  const churchDetails = useSelector(churchData)
-  const studentDetails = useSelector(studentData)
-  const teacherDetails = useSelector(teacherData)
+  // const churchDetails = useSelector(churchData)
+  // const studentDetails = useSelector(studentData)
+  // const teacherDetails = useSelector(teacherData)
+  const details = useSelector(detailsData)
 
   const dispatch = useDispatch()
 
@@ -22,8 +25,9 @@ const ShowModel = () => {
     console.log(id)
     var data = { email: id }
     axios.get('http://localhost:4000/admin/interview-invite', {params: data}).then((res) => {
+      toast.success('Mail Send successfully')
       console.log(res)
-      dispatch(showModelClose)
+      dispatch(showModelClose())
     }).catch((err) => {
       console.log(err)
     })
@@ -38,10 +42,23 @@ const ShowModel = () => {
       backdrop="static"
       keyboard={false}
     >
-      {churchDetails && console.log(churchDetails.type)}
-      <Modal.Title className="pgm__show-model-header">{churchDetails && churchDetails.type} Details</Modal.Title>
+      {details && console.log(details.type)}
+      <Modal.Title className="pgm__show-model-header">{details && details.type} Details</Modal.Title>
       <Modal.Body className="pgm__show-model-body section__padding">
-        {churchDetails && <div className="pgm__show_model_body_content">
+      {details && <div className="pgm__show_model_body_content">
+          {details.data[0].pastorfName && <p>Pastor Name : {details.data[0].pastorfName} {details.data[0].pastorlName}</p>}
+          {details.data[0].fname && <p>Name : {details.data[0].fname} {details.data[0].lname}</p>}
+          <p>place : {details.data[0].address.place}</p>
+          <p>district : {details.data[0].address.district}</p>
+          <p>state : {details.data[0].address.state}</p>
+          <p>phone : {details.data[0].address.phone}</p>
+          <p>pincode : {details.data[0].address.pincode}</p>
+        {details.data[0].members && <p>members : {details.data[0].members}</p>}
+        {details.data[0].experience && <p>Experience : {details.data[0].experience}</p>}
+        {details.course && <p>Course selected : {details.course}</p>}
+          {/* <p>Phone : {details.data[0].address.phone}</p> */}
+        </div>}
+        {/* {churchDetails && <div className="pgm__show_model_body_content">
           <p>Pastor Name : {churchDetails.data[0].pastorfName} {churchDetails.data[0].pastorlName}</p>
           <p>place : {churchDetails.data[0].address.place}</p>
           <p>district : {churchDetails.data[0].address.district}</p>
@@ -64,18 +81,18 @@ const ShowModel = () => {
           <p>state : {teacherDetails.data[0].address.state}</p>
           <p>phone : {teacherDetails.data[0].address.phone}</p>
           <p>experience : {teacherDetails.data[0].experience}</p>
-        </div>}
+        </div>} */}
         <div className="pgm__show-model-button_container">
 
-          {churchDetails && <Button className="pgm__show-model-button" variant="secondary" onClick={()=>handleInvite(churchDetails.email)}>
+          {details && <Button className="pgm__show-model-button" variant="secondary" onClick={()=>handleInvite(details.email)}>
             invite
           </Button>}
-          {studentDetails && <Button className="pgm__show-model-button" variant="secondary" onClick={()=>handleInvite(studentDetails.email)}>
+          {/* {studentDetails && <Button className="pgm__show-model-button" variant="secondary" onClick={()=>handleInvite(studentDetails.email)}>
             invite
           </Button>}
           {teacherDetails && <Button className="pgm__show-model-button" variant="secondary" onClick={()=>handleInvite(teacherDetails.email)}>
             invite
-          </Button>}
+          </Button>} */}
 
           <Button className="pgm__show-model-button" variant="secondary" onClick={() => dispatch(showModelClose())}>
             close
