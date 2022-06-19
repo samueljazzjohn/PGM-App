@@ -25,3 +25,134 @@
     flex: 7;
     background-color: var(--color-footer);
 }
+
+/* Add member styles */
+
+
+.pgm__church_add_member_button{
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    background-color: rgb(58, 181, 58) !important;
+    border: none !important;
+    float: right;
+}
+.pgm__church_add_member_icon{
+    color: white !important;
+    margin-left: 0.4rem;
+}
+
+.pgm__church_add_member_form_button{
+    margin: 1rem 3rem 1rem 3rem !important;
+    width: 100% !important;
+    background-color: rgb(58, 181, 58) !important;
+    border: none !important;
+}
+
+.pgm__church_show_member_header{
+    padding-top: 1rem;
+}
+
+.pgm__church_add_member_form_container{
+    display: flex;
+    justify-content: center;
+}
+
+.pgm__church_add_member_form{
+    margin-top: 2rem;
+    width: 80%;
+}
+
+.pgm__church-form-inputText{
+    margin-top:0.5rem;
+    font-size: smaller;
+    color: var(--color-text) !important;
+    background-color: transparent !important;
+}
+
+.pgm__church-form-inputText:focus{
+    color: var(--color-text) !important;
+    background-color: transparent !important;
+}
+
+.pgm__church_form_label{
+    margin-top: 1rem;
+}
+
+.pgm__church_form_error{
+    color: rgb(191, 23, 23);
+}
+
+.pgm__church_show{
+    margin-top: 3rem;
+}
+
+/* Add committee member style */
+
+.pgm__church_add_committee_member_button{
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    background-color: rgb(58, 181, 58) !important;
+    border: none !important;
+    float: right;
+}
+.pgm__church_add_committee_member_icon{
+    color: white !important;
+    margin-left: 0.4rem;
+}
+
+.pgm__church_add_committee_member_form_button{
+    margin: 1rem 3rem 1rem 3rem !important;
+    width: 100% !important;
+    background-color: rgb(58, 181, 58) !important;
+    border: none !important;
+}
+
+.pgm__church_show_committee_member_header{
+    padding-top: 1rem;
+}
+
+.pgm__church_add_committee_member_form_container{
+    display: flex;
+    justify-content: center;
+}
+
+.pgm__church_add_committee_member_form{
+    margin-top: 2rem;
+    width: 80%;
+}
+
+/* Add revenue expense style */
+
+
+.pgm__church_add_revenue_exp_button{
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    background-color: rgb(58, 181, 58) !important;
+    border: none !important;
+    float: right;
+}
+.pgm__church_add_revenue_exp_icon{
+    color: white !important;
+    margin-left: 0.4rem;
+}
+
+.pgm__church_add_revenue_exp_form_button{
+    margin: 1rem 3rem 1rem 3rem !important;
+    width: 100% !important;
+    background-color: rgb(58, 181, 58) !important;
+    border: none !important;
+}
+
+.pgm__church_show_revenue_exp_header{
+    padding-top: 1rem;
+}
+
+.pgm__church_add_revenue_exp_form_container{
+    display: flex;
+    justify-content: center;
+}
+
+.pgm__church_add_revenue_exp_form{
+    margin-top: 2rem;
+    width: 80%;
+}

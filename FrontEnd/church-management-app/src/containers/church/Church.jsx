@@ -8,6 +8,9 @@ import { GoDiffAdded } from 'react-icons/go'
 import { BiAlarmAdd, BiChurch } from 'react-icons/bi'
 import { MdOutlineManageAccounts } from 'react-icons/md'
 import {DashboardHometab} from '../../components'
+import AddMembers from './AddMembers'
+import AddCommitteMembers from './AddCommitteMembers'
+import AddRevenueExp from './AddRevenueExp'
 
 const Church = () => {
 
@@ -29,7 +32,7 @@ const Church = () => {
   {
     icon: MdOutlineManageAccounts,
     item: 'Add committee members',
-    url:'/admin/add-committee-members'
+    url:'/church/add-committee-members'
   },
   ]
   return (
@@ -50,7 +53,9 @@ const Church = () => {
         </div>
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          
+          <Route path='/add-members' element={<AddMembers/>} />
+          <Route path='/add-revenue-expenditure' element={<AddRevenueExp />} /> 
+          <Route path='/add-committee-members' element={<AddCommitteMembers/>} /> 
         </Routes>
       </div>
     </div>
