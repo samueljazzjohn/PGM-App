@@ -24,15 +24,18 @@ const AddRevenueExp = () => {
     }
 
     return (
-        <div className="pgm__church_add_revenue_exp_container section__margin ">
+        <div className="pgm__church_add_revenue_exp_container">
             <div className="pgm__church_add_revenue_exp_form_container section__padding">
+                <div className="pgm__church_revenue_exp_form_header">
+                    <h5>Add Revenue Exhpense Details</h5>
+                </div>
                 <Form method='POST' className='pgm__church_add_revenue_exp_form' onSubmit={handleSubmit(onSubmit)}>
-                    <label className='pgm__church_form_label' htmlFor="course">Enter the revenue_exp name :</label>
-                    <Form.Control className="pgm__church-form-inputText" type='text' placeholder='revenue_exp' {...register('revenue_expName', { required: "Course do not empty" })}></Form.Control>
-                    {errors.revenue_expName && <span className='pgm__church_form_error' role='alert'>{errors.revenue_expName.message}</span>}
+                    <label className='pgm__church_form_label' htmlFor="course">Enter revenue :</label>
+                    <Form.Control className="pgm__church-form-inputText" type='text' placeholder='revenue' {...register('revenue', { required: "Revenue do not empty" })}></Form.Control>
+                    {errors.revenue && <span className='pgm__church_form_error' role='alert'>{errors.revenue.message}</span>}
                     <label className='pgm__church_form_label' htmlFor="venue">Enter the venue :</label>
-                    <Form.Control className="pgm__church-form-inputText" type='text' placeholder='venue' {...register('venue', { required: "venue do not empty" })}></Form.Control>
-                    {errors.venue && <span className='pgm__church_form_error' role='alert'>{errors.venue.message}</span>}
+                    <Form.Control className="pgm__church-form-inputText" type='text' placeholder='Expense' {...register('expense', { required: "expense do not empty" })}></Form.Control>
+                    {errors.expense && <span className='pgm__church_form_error' role='alert'>{errors.expense.message}</span>}
                     <label className='pgm__church_form_label' htmlFor="date">Enter the date :</label>
                     <Form.Control className="pgm__church-form-inputText" type='date'{...register('date', { required: "date do not empty" })}></Form.Control>
                     {errors.date && <span className='pgm__church_form_error' role='alert'>{errors.date.message}</span>}

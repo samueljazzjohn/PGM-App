@@ -34,15 +34,23 @@
     padding-right: 1rem !important;
     background-color: rgb(58, 181, 58) !important;
     border: none !important;
-    float: right;
+    width: fit-content !important;
+    float: right !important;
 }
+
+/* .pgm__church__button_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+} */
+
 .pgm__church_add_member_icon{
     color: white !important;
     margin-left: 0.4rem;
 }
 
 .pgm__church_add_member_form_button{
-    margin: 1rem 3rem 1rem 3rem !important;
+    margin: 1rem 0rem 0rem 0rem !important;
     width: 100% !important;
     background-color: rgb(58, 181, 58) !important;
     border: none !important;
@@ -52,7 +60,13 @@
     padding-top: 1rem;
 }
 
+.pgm__church_add_member_container{
+    display: flex;
+    flex-direction: column;
+}
+
 .pgm__church_add_member_form_container{
+    margin: 1rem 5rem 0 5rem;
     display: flex;
     justify-content: center;
 }
@@ -86,6 +100,11 @@
     margin-top: 3rem;
 }
 
+.pgm__church-form-checkbox{
+    background-color: transparent !important;
+    margin-top: 1rem;
+}
+
 /* Add committee member style */
 
 .pgm__church_add_committee_member_button{
@@ -93,7 +112,8 @@
     padding-right: 1rem !important;
     background-color: rgb(58, 181, 58) !important;
     border: none !important;
-    float: right;
+    width: fit-content !important;
+    float: right !important;
 }
 .pgm__church_add_committee_member_icon{
     color: white !important;
@@ -101,7 +121,7 @@
 }
 
 .pgm__church_add_committee_member_form_button{
-    margin: 1rem 3rem 1rem 3rem !important;
+    margin: 1rem 0rem 0rem 0rem !important;
     width: 100% !important;
     background-color: rgb(58, 181, 58) !important;
     border: none !important;
@@ -111,7 +131,13 @@
     padding-top: 1rem;
 }
 
+.pgm__church_add_committee_member_container{
+    display: flex;
+    flex-direction: column;
+}
+
 .pgm__church_add_committee_member_form_container{
+    margin: 1rem 8rem 0 8rem;
     display: flex;
     justify-content: center;
 }
@@ -137,7 +163,7 @@
 }
 
 .pgm__church_add_revenue_exp_form_button{
-    margin: 1rem 3rem 1rem 3rem !important;
+    margin: 1rem 0rem 0rem 0rem !important;
     width: 100% !important;
     background-color: rgb(58, 181, 58) !important;
     border: none !important;
@@ -149,10 +175,12 @@
 
 .pgm__church_add_revenue_exp_form_container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
 .pgm__church_add_revenue_exp_form{
+    margin: auto;
     margin-top: 2rem;
-    width: 80%;
+    width: 55%;
 }

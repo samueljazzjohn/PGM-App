@@ -10,11 +10,7 @@ export const addCourse = (formData) => API.post("/admin/add-course",formData)
 
 export const addEvent = (formData) => API.post("/admin/add-event",formData)
 
-// export const churchDetails = (Data) => API.get("/admin/church-data",{params:Data})
-
-// export const studentDetails = (Data) => API.get("/admin/student-data",{params:Data})
-
-// export const teacherDetails = (Data) => API.get("/admin/teacher-data",{params:Data})
+export const addMember = (formData,token) => API.post("/church/add-member",{data:formData},{headers:{"authorization" : `Bearer ${token}`}})
 
 export const details = (Data) => API.get("/admin/details",{params:Data})
 

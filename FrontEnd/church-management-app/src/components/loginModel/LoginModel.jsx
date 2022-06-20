@@ -30,9 +30,9 @@ const LoginModel = () => {
         setData({ ...data, [event.target.name]: [event.target.value] })
     }
 
-    const pattern = new RegExp(
-        "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
-    );
+    // const pattern = new RegExp(
+    //     "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
+    // );
 
     const verifyLogin = (email, password) => {
         console.log(email)
@@ -41,9 +41,11 @@ const LoginModel = () => {
             setError('Enter a valid email address')
         } else if (password.toString().trim().length < 8) {
             setError('password must contain atleast 8 characters')
-        } else if (!pattern.test(password)) {
-            setError('password must contain atleast one lowercase,uppercase and special character')
-        } else {
+        } 
+        // else if (!pattern.test(password)) {
+        //     setError('password must contain atleast one lowercase,uppercase and special character')
+        // }
+         else {
             setError('');
             console.log(error)
         }

@@ -12,6 +12,7 @@ import AddMembers from './AddMembers'
 import AddCommitteMembers from './AddCommitteMembers'
 import AddRevenueExp from './AddRevenueExp'
 
+
 const Church = () => {
 
   const menuItems = [{
@@ -35,6 +36,7 @@ const Church = () => {
     url:'/church/add-committee-members'
   },
   ]
+
   return (
     <div className="pgm__church_dashboard_container">
       <div className="pgm__church_dashboard_menu">

@@ -45,11 +45,12 @@ const AddCommitteMembers = () => {
 
   return (
     <div className="pgm__church_add_committee_member_container section__margin ">
+      <div className="pgm__church__button_header">
     <Button className='pgm__church_add_committee_member_button' onClick={handleClick}>
       {
         !isButtonClicked
-          ? "Add new Committee Member"
-          : "Show Committee Members"
+          ? "Add new Committee Member  "
+          : "Show Committee Members  "
       }
       {
         !isButtonClicked ?
@@ -61,25 +62,35 @@ const AddCommitteMembers = () => {
       {
         !isButtonClicked && <div className="pgm__church_show_committe_member">
         <div className="pgm__church_show_committe_member_header">
-          <p>Committe members</p>
+          <p>Committee Members</p>
         </div>
         <div className="pgm__church_show">
           {committee && committee.map((committee) => <ShowBar key={committee._id} url='http://localhost:4000/church/remove-committee' date={committee.date} id={committee._id} name={committee.committeeName} state={setIsButtonClicked} />)}
         </div>
       </div>
       }
+      </div>
     {
-      isButtonClicked && <div className="pgm__church_add_committee_member_form_container section__padding">
+      isButtonClicked && <div className="pgm__church_add_committee_member_form_container">
       <Form method='POST' className='pgm__church_add_committee_member_form' onSubmit={handleSubmit(onSubmit)}>
-        <label className='pgm__church_form_label' htmlFor="course">Enter the event name :</label>
-        <Form.Control className="pgm__church-form-inputText" type='text' placeholder='Event' {...register('eventName', { required: "Course do not empty" })}></Form.Control>
-        {errors.eventName && <span className='pgm__church_form_error' role='alert'>{errors.eventName.message}</span>}
-        <label className='pgm__church_form_label' htmlFor="venue">Enter the venue :</label>
-        <Form.Control className="pgm__church-form-inputText" type='text' placeholder='venue' {...register('venue', { required: "venue do not empty"})}></Form.Control>
-        {errors.venue && <span className='pgm__church_form_error' role='alert'>{errors.venue.message}</span>}
-        <label className='pgm__church_form_label' htmlFor="date">Enter the date :</label>
-        <Form.Control className="pgm__church-form-inputText" type='date'{...register('date', { required: "date do not empty"})}></Form.Control>
-        {errors.date && <span className='pgm__church_form_error' role='alert'>{errors.date.message}</span>}
+        <label className='pgm__church_form_label' htmlFor="name">Enter the name :</label>
+        <Form.Control className="pgm__church-form-inputText" type='text' placeholder='Name' {...register('name', { required: "Course do not empty" })}></Form.Control>
+        {errors.name && <span className='pgm__church_form_error' role='alert'>{errors.name.message}</span>}
+        <label className='pgm__church_form_label' htmlFor="position">Select position :</label>
+                <Form.Select aria-label="Default select" className='pgm__church-form-inputText' {...register('position', {
+                  required: true,
+                  validate: (position) => {
+                    if (position == "--select position--") {
+                      return "Select a position"
+                    }
+                  }
+                })}>
+                  <option>--select position--</option>
+                  <option>president</option>
+                  <option>secretary</option>
+                  <option>treasurer</option>
+                </Form.Select>
+                {errors.position && <span className="pgm__register_error" role='alert'>{errors.position.message}</span>}
         <div>
           <Button type='submit' className="pgm__church_add_committee_member_form_button mx-auto" variant="secondary">Add event</Button>
 

@@ -14,6 +14,10 @@ const TypeComponent = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const pattern = new RegExp(
+    "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
+);
+
   const navigateForm = (data) => {
     console.log(data)
     dispatch(categorySelected(data.type))
@@ -42,7 +46,13 @@ const TypeComponent = () => {
         </Row>
         <Row>
           <Col className='sm-10 md-6'>
-            <Form.Control type='password' className='pgm__contact-form-inputText' placeholder='password' {...register('pass', { required: true, minLength: { value: 8, message: "password must contain 8 characters" } })} />
+            <Form.Control type='password' className='pgm__contact-form-inputText' placeholder='password' {...register('pass', { required: true,
+              validate:(pass)=>{
+                if(!pattern.test(pass)){
+                  return "password must contain 1 uppercase,lowercase and a special character"
+                }
+              },
+              minLength: { value: 8, message: "password must contain 8 characters" } })} />
             {errors.pass && <span className="pgm__register_error" role='alert'>{errors.pass.message}</span>}
           </Col>
           <Col className='sm-10 md-6'>

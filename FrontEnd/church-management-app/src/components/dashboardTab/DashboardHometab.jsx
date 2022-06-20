@@ -3,10 +3,14 @@ import './dashboardTab.css'
 import {Form} from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import {FiSearch} from 'react-icons/fi'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../features/user/userSlice'
 
 
 
 const DashboardHometab = () => {
+
+  const user=useSelector(selectUser)
 
   const {register,handleSubmit} = useForm()
 
@@ -25,7 +29,7 @@ const DashboardHometab = () => {
           <FiSearch onClick={handleSubmit(handleSearch)} className="pgm__dashboard_search_icon" size='30px' />
         </div>
         <div className="pgm__dashboard_user">
-          <p>SamuelJazzJohn</p>
+          <p>{user.username}</p>
           <img onClick={handleAccount} src="https://www.w3schools.com/howto/img_avatar.png" alt="avatar" />
         </div>
     </div>    
