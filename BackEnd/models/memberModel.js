@@ -2,16 +2,10 @@ const mongoose = require('mongoose')
 
 const memberSchema =new mongoose.Schema({
     memberName:{type:String,required:true},
-    isBaptized:{type:Boolean,required:true},
+    isBaptized:{type:String,required:true,enum:['Yes','No']},
     baptizedDate:Date,
-    address:{
-        place:String,
-        district:String,
-        city:String,
-        state:String,
-        pincode:String,
-        phone:String,
-    },
+    phone:{type:String,required:true},
+    maritalStatus:{type:String,required:true,enum:['Single','Married']},
     churchId:{type:mongoose.Schema.Types.ObjectId,ref:'churchModel'}
 },{collection:'Members'}
 );

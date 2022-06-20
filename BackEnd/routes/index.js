@@ -8,6 +8,10 @@ const TeacherModel = require('../models/teacherModel')
 const CourseModel = require('../models/courseModel')
 const mailSendHelper = require("../helpers/mailSendHelper")
 const mongoose = require('mongoose')
+const jwt = require('jsonwebtoken')
+const dotenv=require('dotenv')
+
+dotenv.config()
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -121,26 +125,33 @@ router.post('/login', function (req, res, next) {
   UserModel.findOne({ email: req.body.email }, async (err, doc) => {
     if (err) return res.status(400).json({ "Message": err });
     if (doc == null) {
-      return res.status(403).json({ "Message": "Email not registered" });
+      return res.status(401).json({ "Message": "Email not registered" });
     }
 
     console.log(doc)
-    if (doc.status === 'pending') {
+    if (doc.status === 'Pending') {
       return res.status(402).json({ "Message": "Your account is not approved by admin" })
     }
 
     bcrypt.compare(req.body.password, doc.password, (err, res) => {
-      if (err) return res.status(402).json({"Message":err})
-      if (!res) return res.status(401).json({ "Message": "Invalid password" })
+      if (err) {
+        return res.status(403).json(err)
+      }
+      if (!res) {
+        return res.status(404).json({ "Message": "Invalid password" })
+      }
     })
 
-    const data = {
+    let data = {
       userId: doc._id,
       email: doc.email,
       username: doc.username,
       type: doc.type
     }
-    console.log(req.body)
+    const token = jwt.sign(JSON.stringify(data),process.env.JWT_SECRET_KEY);
+
+    data={...data,token:token}
+    // console.log(data)
     res.status(202).json(data)
   })
 });
