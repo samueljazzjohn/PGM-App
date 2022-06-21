@@ -36,7 +36,7 @@ const dotenv=require('dotenv')
 dotenv.config()
 
 function authenticateToken(req, res, next) {
-    console.log(req.headers.authorization)
+    // console.log(req.headers)
   const authHeader = req.headers.authorization
   const token = authHeader && authHeader.split(' ')[1]
 
