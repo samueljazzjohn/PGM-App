@@ -11,6 +11,8 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async ({data,navigat
     try{
         const response = await api.login(data)
         console.log(response.data)
+        localStorage.setItem('user',response.data)
+        console.log("Local storage"+localStorage.getItem('user'))
         toast.success('Login success')
         if(response.data.type==='admin'){
             navigate('/admin')
@@ -31,6 +33,14 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async ({data,navigat
 export const userSlice = createSlice({
     name:'user',
     initialState,
+    reducers : {
+        login : (state,payload)=>{
+            state.user=payload
+        },
+        logout : (state)=>{
+            state.user=null
+        }
+    },
     extraReducers:builder=>{
         builder.addCase(fetchUser.pending,(state)=>{
             state.loading=true
@@ -55,7 +65,7 @@ export const selectLoading = (state) => state.user.loading;
 
 export const selectError = (state) => state.user.error;
 
-// export const {login,logout} = userSlice.actions;
+export const {login,logout} = userSlice.actions;
 
 
 export default userSlice.reducer;

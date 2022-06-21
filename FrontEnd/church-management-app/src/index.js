@@ -8,7 +8,14 @@ import 'react-toastify/dist/ReactToastify.css'
 import store from './app/store'
 import { Provider } from 'react-redux';
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import { login } from './features/user/userSlice';
+import { useDispatch } from 'react-redux';
 
+// const user=localStorage.getItem('user')
+// if(user){
+//   const dispatch=useDispatch()
+//   dispatch(login(user))  
+// }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
