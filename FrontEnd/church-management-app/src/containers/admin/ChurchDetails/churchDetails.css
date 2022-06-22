@@ -1,0 +1,6 @@
+/* Church data component style */
+
+.pgm__admin_church_data_container{
+    display: flex;
+    flex-direction: row;
+}

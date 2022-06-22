@@ -3,7 +3,8 @@ import './admin.css'
 import Dashboard from './Dashboard'
 import AddCourse from './AddCourse'
 import AddEvent from './AddEvent'
-import ChurchDetails from './ChurchDetails'
+import ChurchDetailsHome from './ChurchDetails/ChurchDetailsHome'
+import ChurchDetails from './ChurchDetails/ChurchDetails'
 import StudentDetails from './StudentDetails'
 import TeacherDetails from './TeacherDetails'
 import {Routes,Route} from 'react-router-dom'
@@ -75,7 +76,7 @@ const Admin = () => {
           <Route path='/add-course' element={<AddCourse />} />
           <Route path='/add-event' element={<AddEvent />} />
           <Route path='/add-course' element={<AddCourse />} />
-          <Route path='/church-details' element={<ChurchDetails />} />
+          <Route path='/church-details/*' element={<ChurchDetailsHome />} />
           <Route path='/student-details' element={<StudentDetails />} />
           <Route path='/tacher-details' element={<TeacherDetails />} />
           <Route path='/manage-request/*' element={<ManageRequest />} />

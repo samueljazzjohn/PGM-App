@@ -29,3 +29,45 @@
     flex: 7;
     background-color: var(--color-footer);
 }
+
+
+/* Add notification style */
+
+
+.pgm__teacher_add_notification-button{
+    margin: 1rem 0rem 1rem 0rem !important;
+    width: 100% !important;
+    background-color: rgb(58, 181, 58) !important;
+    border: none !important;
+}
+
+
+.pgm__teacher_add_notification-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 5rem;
+    margin: auto;
+    width: 60%;
+}
+
+/* .pgm__teacher_add_notification-form{
+    margin-top: 2rem;
+    width: 80%;
+} */
+
+.pgm__teacher-form-inputText{
+    margin-top:0.5rem;
+    font-size: smaller;
+    color: var(--color-text) !important;
+    background-color: transparent !important;
+}
+
+.pgm__teacher-form-inputText:focus{
+    color: var(--color-text) !important;
+    background-color: transparent !important;
+}
+
+.pgm__teacher_form_label{
+    margin-top: 1rem;
+}

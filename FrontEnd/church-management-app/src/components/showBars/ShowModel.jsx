@@ -3,9 +3,7 @@ import './showBars.css'
 import { showModelShow, showModelClose } from '../../features/showModel/ShowModelSlice'
 import { useSelector, useDispatch } from 'react-redux/es/exports'
 import { Modal, Button } from 'react-bootstrap'
-// import { churchData } from '../../features/admin/churchDetails'
-// import { studentData } from '../../features/admin/studentDetails'
-// import { teacherData } from '../../features/admin/teacherDetails'
+import { selectInvite } from '../../features/showModel/ShowModelSlice'
 import {detailsData} from '../../features/admin/detailsSlice'
 import {toast} from 'react-toastify'
 import axios from 'axios'
@@ -14,9 +12,7 @@ const ShowModel = () => {
 
   const show = useSelector(showModelShow)
 
-  // const churchDetails = useSelector(churchData)
-  // const studentDetails = useSelector(studentData)
-  // const teacherDetails = useSelector(teacherData)
+  const isInvite=useSelector(selectInvite)
   const details = useSelector(detailsData)
 
   const dispatch = useDispatch()
@@ -58,41 +54,11 @@ const ShowModel = () => {
         {details.course && <p>Course selected : {details.course}</p>}
           {/* <p>Phone : {details.data[0].address.phone}</p> */}
         </div>}
-        {/* {churchDetails && <div className="pgm__show_model_body_content">
-          <p>Pastor Name : {churchDetails.data[0].pastorfName} {churchDetails.data[0].pastorlName}</p>
-          <p>place : {churchDetails.data[0].address.place}</p>
-          <p>district : {churchDetails.data[0].address.district}</p>
-          <p>state : {churchDetails.data[0].address.state}</p>
-          <p>phone : {churchDetails.data[0].address.phone}</p>
-          <p>members : {churchDetails.data[0].members}</p>
-        </div>}
-        {studentDetails && <div className="pgm__show_model_body_content">
-          <p>Name : {studentDetails.data[0].pastorfName} {studentDetails.data[0].pastorlName}</p>
-          <p>place : {studentDetails.data[0].address.place}</p>
-          <p>district : {studentDetails.data[0].address.district}</p>
-          <p>state : {studentDetails.data[0].address.state}</p>
-          <p>phone : {studentDetails.data[0].address.phone}</p>
-          <p>course : {studentDetails.data[0].course}</p>
-        </div>}
-        {teacherDetails && <div className="pgm__show_model_body_content">
-          <p>Name : {teacherDetails.data[0].pastorfName} {teacherDetails.data[0].pastorlName}</p>
-          <p>place : {teacherDetails.data[0].address.place}</p>
-          <p>district : {teacherDetails.data[0].address.district}</p>
-          <p>state : {teacherDetails.data[0].address.state}</p>
-          <p>phone : {teacherDetails.data[0].address.phone}</p>
-          <p>experience : {teacherDetails.data[0].experience}</p>
-        </div>} */}
         <div className="pgm__show-model-button_container">
 
-          {details && <Button className="pgm__show-model-button" variant="secondary" onClick={()=>handleInvite(details.email)}>
+          {details && isInvite===true && <Button className="pgm__show-model-button" variant="secondary" onClick={()=>handleInvite(details.email)}>
             invite
           </Button>}
-          {/* {studentDetails && <Button className="pgm__show-model-button" variant="secondary" onClick={()=>handleInvite(studentDetails.email)}>
-            invite
-          </Button>}
-          {teacherDetails && <Button className="pgm__show-model-button" variant="secondary" onClick={()=>handleInvite(teacherDetails.email)}>
-            invite
-          </Button>} */}
 
           <Button className="pgm__show-model-button" variant="secondary" onClick={() => dispatch(showModelClose())}>
             close

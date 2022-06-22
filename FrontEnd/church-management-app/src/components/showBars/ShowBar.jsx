@@ -4,10 +4,16 @@ import {Card} from 'react-bootstrap'
 import {toast} from 'react-toastify'
 import axios from 'axios'
 import {MdDeleteOutline} from 'react-icons/md'
+import {BiShow} from 'react-icons/bi'
+import { useDispatch } from 'react-redux/es/exports'
+import { fetchDetails } from '../../features/admin/detailsSlice'
+import { showModelOpen } from '../../features/showModel/ShowModelSlice'
 
 const ShowBar = (props) => {
 
-  const handleClick=async(id)=>{
+  const dispatch=useDispatch()
+
+  const handleDelete=async(id)=>{
     console.log(id)
     var payload={
       "id":id
@@ -22,11 +28,14 @@ const ShowBar = (props) => {
     })
   }
 
+
   return (
     <div className="pgm__show_card_container">
       <card className="pgm__show_card_body" body>{props.name}</card>
+      <div className="pgm__show_card_icon">
       {props.date && <p>{props.date}</p>}
-      <MdDeleteOutline className='pgm__show_card_icon' onClick={()=>handleClick(props.id)} />
+      <MdDeleteOutline className='pgm__show_card_icon' onClick={()=>handleDelete(props.id)} />
+      </div>
     </div>
   )
 }

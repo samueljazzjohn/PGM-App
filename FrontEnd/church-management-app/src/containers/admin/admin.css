@@ -122,3 +122,9 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+/* Church details */
+
+.pgm__admin_show{
+    margin-top: 3rem;
+}

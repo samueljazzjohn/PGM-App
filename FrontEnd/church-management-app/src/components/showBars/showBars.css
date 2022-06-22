@@ -1,4 +1,5 @@
 .pgm__show_card_container{
+    cursor: pointer;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -31,6 +32,9 @@
 
 .pgm__show_request_bar_container{
     width: 100%;
+}
+.pgm__show_card_icon_show{
+    margin-right: 1rem;
 }
 
 .pgm__request_show_card_content{

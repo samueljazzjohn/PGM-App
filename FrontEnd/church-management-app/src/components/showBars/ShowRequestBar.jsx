@@ -32,14 +32,16 @@ const ShowRequestBar = (props) => {
         console.log(data)
 
         dispatch(fetchDetails({data})).then(()=>{
-            dispatch(showModelOpen())
+            dispatch(showModelOpen(true))
         }).catch((err)=>{
             toast.error("Server error")
         })
     }
 
     const handleAccept=()=>{
-        var data={id:props.id}
+
+        var date = new Date()
+        var data={id:props.id,date:date}
 
         axios.patch("http://localhost:4000/admin/accept-request",data).then(()=>{
             toast.success("Request accepted successfully")

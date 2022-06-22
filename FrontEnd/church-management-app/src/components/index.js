@@ -8,6 +8,8 @@ export { default as RegistrationModel } from "./registrationModel/RegistrationMo
 export { default as DashboardTab } from "./dashboardTab/DashboardTab"
 export { default as DashboardHometab } from "./dashboardTab/DashboardHometab"
 export { default as ShowBar } from "./showBars/ShowBar"
+export { default as DetailedShowBar } from "./showBars/DetailedShowBar"
+
 
 
 

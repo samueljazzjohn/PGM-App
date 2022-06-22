@@ -9,7 +9,7 @@ const RequestCard = (props) => {
 
     const handleClick=()=>{
         console.log('clicked')
-        navigate(props.url)
+        navigate(props.url,{state:{id:props.id}})
     }
 
   return (
