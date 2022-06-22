@@ -13,7 +13,7 @@ const studentSchema = new mongoose.Schema({
         phone:String,
     },
     aadhar:{type:String,required:true},
-    batch:{type:Date},
+    batch:{type:String},
     userId:{type:mongoose.Schema.Types.ObjectId,ref:'userModel'},
     courseId:{type:mongoose.Schema.Types.ObjectId,ref:'courseModel',required:true}
 },{collection:'Student'})

@@ -70,6 +70,11 @@ router.get('/get-committee-members',middleware.athenticateToken,async(req,res,ne
   res.status(200).json(data)
 })
 
+// router.delete('/remove-member',middleware.athenticateToken,async(req,res,next)=>{
+  
+// })
+
+
 router.delete('/remove-committee-member',middleware.athenticateToken,async(req,res,next)=>{
   console.log(req.body)
   if(req.body.payload.position==='secretary'){

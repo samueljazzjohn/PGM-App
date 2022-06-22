@@ -9,6 +9,7 @@ const StudentModel = require('../models/studentModel')
 const TeacherModel = require('../models/teacherModel')
 const nodemailer = require('nodemailer');
 const mailSendHelper = require('../helpers/mailSendHelper');
+const middleware = require('../middleware');
 require('dotenv').config()
 
 let transport = nodemailer.createTransport({
@@ -42,6 +43,9 @@ router.delete('/remove-course', async (req, res, next) => {
 
 router.post('/add-event', async (req, res, next) => {
   console.log(req.body)
+
+  let date=req.body.date.substring(0,10)
+  req.body.date=date
 
   await EventModel.create(req.body).then(() => {
     res.status(200).json({ 'Message': 'success' })
@@ -164,11 +168,14 @@ router.get('/interview-invite', async (req, res, next) => {
 // Accept request
 router.patch('/accept-request', async (req, res, next) => {
   console.log(req.body)
+  let date=req.body.date.substring(0,4)
+  console.log(date)
   let doc = await UserModel.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.body.id) }, { status: 'Approved' }, { new: true })
   if (!doc) {
     return res.status(401).json({ "Message": "Failed" })
   }
   mailSendHelper.acceptedMail(doc.email,doc.username,req.body.id)
+  await StudentModel.findOneAndUpdate({userId:mongoose.Types.ObjectId(doc._id)},{batch:date},{upsert:true})
   return res.status(201).json({"Message":"Success"})
 })
 
@@ -206,6 +213,40 @@ router.delete('/reject-request', async (req, res, next) => {
     }
     return res.status(201).json({"Message":"Succes"})
   }
+})
+
+// Get approved teacher details
+router.get('/full-teacher-details',middleware.athenticateToken,async(req,res,next)=>{
+  UserModel.find({type:"teacher",status:"Approved"}).then((doc)=>{
+    res.status(200).json(doc)
+  }).catch((err)=>{
+    res.status(400).json({"Error":err})
+  })
+})
+
+// Get approved student details
+router.get('/full-student-details',middleware.athenticateToken,async(req,res,next)=>{
+  UserModel.find({type:"student",status:"Approved"}).then((doc)=>{
+    res.status(200).json(doc)
+  }).catch((err)=>{
+    res.status(400).json({"Error":err})
+  })
+})
+
+// Get approved  church details
+router.get('/full-church-details',middleware.athenticateToken,async(req,res,next)=>{
+  UserModel.find({type:"church",status:"Approved"}).then((doc)=>{
+    res.status(200).json(doc)
+  }).catch((err)=>{
+    res.status(400).json({"Error":err})
+  })
+})
+
+
+// Get member details
+router.get('/member-details',middleware.athenticateToken,async(req,res,next)=>{
+  console.log(req.body)
+  console.log(req.query)
 })
 
 
