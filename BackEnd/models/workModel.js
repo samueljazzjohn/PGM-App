@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 
 const workSchema = new mongoose.Schema({
     question:{type:String,required:true},
+    batch:{type:String,required:true},
+    date:{type:String,required:true},
     answers:{
         answer:String,
         studentId:{
@@ -9,7 +11,8 @@ const workSchema = new mongoose.Schema({
             ref:'studentModel'
         }
     },
-    courseId:{type:mongoose.Schema.Types.ObjectId, ref:'courseModel'}
+    teacherId:{type:mongoose.Schema.Types.ObjectId, ref:'teacherModel',required:true},
+    courseId:{type:mongoose.Schema.Types.ObjectId, ref:'courseModel',required:true}
 },{collection:'Work'})
 
 module.exports = mongoose.model('workModel',workSchema)
