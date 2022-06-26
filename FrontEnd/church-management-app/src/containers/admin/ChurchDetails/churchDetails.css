@@ -4,3 +4,26 @@
     display: flex;
     flex-direction: row;
 }
+
+/* Member table design */
+.pgm__member_table{
+    color: var(--color-text) !important;
+    border-color: white !important;
+}
+
+.pgm__member_table_header,.pgm__member_table_row{
+    color: var(--color-text) !important;
+    border-color: var(--color-text) !important;
+
+}
+
+.pgm__member_search_table{
+    color: var(--color-text) !important;
+}
+
+/* Church committee page design */
+.pgm__church_no_committee{
+    display: flex;
+    justify-content: center;
+    margin-top: 45%;
+}

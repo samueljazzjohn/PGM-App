@@ -8,6 +8,8 @@ import { GoDiffAdded } from 'react-icons/go'
 import { BiAlarmAdd } from 'react-icons/bi'
 import { MdOutlineManageAccounts } from 'react-icons/md'
 import {DashboardHometab} from '../../components'
+import ViewNotification from './ViewNotification'
+import SubmitWorks from './SubmitWorks'
 
 const Student = () => {
 
@@ -24,7 +26,7 @@ const Student = () => {
   {
     icon: BiAlarmAdd,
     item: 'View notification',
-    url:'/student/view notification'
+    url:'/student/view-notification'
   },
   ]
 
@@ -46,7 +48,8 @@ const Student = () => {
         </div>
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          
+          <Route path="/submit-works" element={<SubmitWorks />} />
+          <Route path="/view-notification" element={<ViewNotification />} />
         </Routes>
       </div>
     </div>

@@ -2,7 +2,7 @@
     color: var(--color-text);
     display: flex;
     flex-direction: row;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .pgm__admin_dashboard_menu{
@@ -127,4 +127,12 @@
 
 .pgm__admin_show{
     margin-top: 3rem;
+}
+
+.pgm__admin_student_container{
+    margin: 3rem 1rem 2rem 1rem;
+}
+
+.pgm__admin_teacher_details_container{
+    margin: 3rem 1rem 2rem 1rem;
 }

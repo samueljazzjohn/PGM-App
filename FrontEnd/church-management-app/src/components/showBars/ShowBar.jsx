@@ -32,10 +32,10 @@ const ShowBar = (props) => {
   return (
     <div className="pgm__show_card_container">
       <card className="pgm__show_card_body" body>{props.name}</card>
-      <div className="pgm__show_card_icon">
+      {/* <div className="pgm__show_card_icon_container"> */}
       {props.date && <p>{props.date}</p>}
       <MdDeleteOutline className='pgm__show_card_icon' onClick={()=>handleDelete(props.id)} />
-      </div>
+      {/* </div> */}
     </div>
   )
 }

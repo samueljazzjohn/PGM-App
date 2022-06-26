@@ -78,7 +78,7 @@ const Admin = () => {
           <Route path='/add-course' element={<AddCourse />} />
           <Route path='/church-details/*' element={<ChurchDetailsHome />} />
           <Route path='/student-details' element={<StudentDetails />} />
-          <Route path='/tacher-details' element={<TeacherDetails />} />
+          <Route path='/teacher-details' element={<TeacherDetails />} />
           <Route path='/manage-request/*' element={<ManageRequest />} />
           {/* <Route path='/student-request' element={< />} />
           <Route path='/teacher-request' element={< />} />
