@@ -9,6 +9,7 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUser } from '../../features/user/userSlice'
 import ShowQuestion from '../../components/showBars/ShowQuestion'
+
 const AssignWorks = () => {
 
   var max = new Date().getFullYear()
@@ -89,8 +90,8 @@ const AssignWorks = () => {
       <Button className='pgm__admin_add_course_button' onClick={handleClick}>
         {
           !isButtonClicked
-            ? "Add new Course"
-            : "Show Courses"
+            ? "Assign Work"
+            : "Show Works"
         }
         {
           !isButtonClicked ?

@@ -1,16 +1,26 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import './dashboardTab.css'
 import {Form} from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import {FiSearch} from 'react-icons/fi'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../features/user/userSlice'
+import {useNavigate } from 'react-router-dom'
 
 
 
 const DashboardHometab = () => {
 
   const user=useSelector(selectUser)
+
+  const navigate=useNavigate()
+
+  useEffect(() => {
+    if(!user.username){
+      navigate('/')
+    }
+  }, [])
+  
 
   const {register,handleSubmit} = useForm()
 

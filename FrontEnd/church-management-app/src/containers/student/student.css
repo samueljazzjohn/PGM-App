@@ -29,3 +29,9 @@
     flex: 7;
     background-color: var(--color-footer);
 }
+
+/* Submit work style */
+.pgm__student_submit_works-form{
+    margin: auto;
+    width: 50%;
+}

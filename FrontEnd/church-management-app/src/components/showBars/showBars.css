@@ -123,3 +123,7 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.pgm__question_show_card_body{
+    margin-bottom: 1rem;
+}
