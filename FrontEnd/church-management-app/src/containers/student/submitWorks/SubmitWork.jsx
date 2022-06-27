@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUser } from '../../../features/user/userSlice'
-import {toast} from 'react-toastify'
-import {storage} from '../../../firebase'
+import { toast } from 'react-toastify'
+import { storage } from '../../../firebase'
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 
 
@@ -14,19 +14,24 @@ const SubmitWork = () => {
 
     const { state } = useLocation()
     const [loading, setLoading] = useState(false)
+    const [uploading,setUploading] = useState(false)
+    const [progress, setProgress] = useState()
+    const [url, setUrl] = useState()
 
     const user = useSelector(selectUser)
 
     const token = user.token
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm()
+    const { register, handleSubmit, formState: { errors }, watch } = useForm()
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         setLoading(true)
-        console.log(data.upload[0].name)
-        data=data.upload[0]
-        // data.fileName=data.upload[0].name
-        axios.post("http://localhost:4000/student/upload-work",data, { headers: { "authorization": `Bearer ${token}`, "Contetnt-Type":"multipart/form-data"  } }).then((res) => {
+        if(!url) return;
+        console.log("post"+url)
+        // data.upload=url
+        // data.id=state
+        data={upload:url,id:state.id}
+        axios.post("http://localhost:4000/student/upload-work", data, { headers: { "authorization": `Bearer ${token}`, "Contetnt-Type": "multipart/form-data" } }).then((res) => {
             setLoading(false)
             toast.success('Answer submitted')
             console.log(res.data)
@@ -35,6 +40,39 @@ const SubmitWork = () => {
             console.log(err.message)
             toast.error('Something went wrong')
         })
+    }
+
+    const handleUpload=(data)=>{
+        console.log(data)
+        setUploading(true)
+        console.log(data[0])
+        let file = data[0]
+        data.fileName=data[0].name
+        uploadFile(file)
+    }
+
+    const uploadFile = (file) => {
+        if (!file) return;
+        const storageRef = ref(storage, `files/${file.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        uploadTask.on("state_changed",
+            (snapshot) => {
+                const progress =
+                    Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                setProgress(progress);
+            },
+            (error) => {
+                console.log(error)
+                setUploading(false)
+            },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setUrl(downloadURL)
+                    console.log(downloadURL)
+                    setUploading(false)
+                });
+            });
     }
 
     return (
@@ -48,6 +86,11 @@ const SubmitWork = () => {
 
                     </Col>
                 </Row>
+                <Row>
+                    <Col>
+                    {progress ? <p>{progress}%</p>:null}
+                    </Col>
+                </Row>
                 {/* <Row>
           <Col>
           <label className='pgm__church_form_label' htmlFor="name">Choose a file :</label>
@@ -55,6 +98,9 @@ const SubmitWork = () => {
           </Col>
         </Row> */}
                 <Row>
+                <Col>
+                        <Button className="pgm__teacher_assign_works-button" disabled={uploading} variant="primary" onClick={()=>handleUpload(watch("upload"))}>Upload</Button>
+                    </Col>
                     <Col>
                         <Button className="pgm__teacher_assign_works-button" disabled={loading} variant="primary" type="submit" >Submit</Button>
                     </Col>
