@@ -33,13 +33,15 @@ router.get('/view-works',middleware.athenticateToken,async(req,res,next)=>{
 
 // Upload Work
 router.post('/upload-work',middleware.athenticateToken,async(req,res,next)=>{
-  console.log(req.body)
-  let data={url:req.body.upload,studentId:req.body.id}
-  WorkModel.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.body.id) }, { answers: data }, { upsert: true }).then((doc)=>{
-    console.log(doc)
+  let data={url:req.body.upload,studentId:req.user.userId}
+  WorkModel.findOneAndUpdate({'answers.studentId':mongoose.Types.ObjectId(req.user.userId)},{$set:{'answers.$.url':req.body.upload}},(err,doc)=>{
+    if(err) return res.status(400).json(err)
+    if(!doc) {
+      WorkModel.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.id)},{$push:{answers:data}},(err,doc)=>{
+        if(err) return res.status(400).json({"Error":err})
+      })
+    }
     res.status(200).json({"Message":"Success"})
-  }).catch((err)=>{
-    res.status(400).json({"Error":err})
   })
 })
 

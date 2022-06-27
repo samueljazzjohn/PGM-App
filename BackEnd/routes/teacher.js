@@ -78,11 +78,13 @@ router.get('/view-works',middleware.athenticateToken,async(req,res,next)=>{
 
 // Delete work
 router.delete('/remove-work',middleware.athenticateToken,async(req,res,next)=>{
-  WorkModel.deleteOne({_id:mongoose.Types.ObjectId(req.body.id)}).then(()=>{
-    res.status(200).json({"Message":"Success"})
-  }).catch((err)=>{
-    res.status(400).json({"Error":err})
-  })
+  console.log(req.body.payload)
+  let workdel=await WorkModel.deleteOne({_id:mongoose.Types.ObjectId(req.body.payload.id)})
+  console.log(workdel)
+  if (workdel.deletedCount == 0) {
+    return res.status(401).json({ "Message": "failed" })
+  }
+  res.status(200).json({"Message":"Success"})
 })
 
 
