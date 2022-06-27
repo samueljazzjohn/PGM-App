@@ -50,6 +50,12 @@
 
 }
 
+.toggle-btn{
+    border:none !important;
+    background-color: transparent !important;
+
+}
+
 .pgm__dashboard_search_icon{
     margin: 0.3rem 0 0 0.5rem;
     cursor: pointer;

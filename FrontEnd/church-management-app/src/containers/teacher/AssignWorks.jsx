@@ -9,6 +9,7 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUser } from '../../features/user/userSlice'
 import ShowQuestion from '../../components/showBars/ShowQuestion'
+import {useNavigate} from 'react-router-dom'
 
 const AssignWorks = () => {
 
@@ -27,6 +28,8 @@ const AssignWorks = () => {
   const [work,setWork] = useState()
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
+
+  const navigate=useNavigate()
 
   const user = useSelector(selectUser)
 
@@ -48,6 +51,13 @@ const AssignWorks = () => {
       toast.error("Server error")
     })
   }
+
+  // useEffect(() => {
+  //   console.log(user)
+  //   if (user==null) {
+  //     navigate('/')
+  //   }
+  // })
 
   useEffect(() => {
     axios.get("http://localhost:4000/course").then((res) => {

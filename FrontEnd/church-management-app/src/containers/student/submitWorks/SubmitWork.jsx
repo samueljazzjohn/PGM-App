@@ -26,6 +26,7 @@ const SubmitWork = () => {
 
     const onSubmit = async (data) => {
         setLoading(true)
+        setProgress(false)
         if(!url) return;
         console.log("post"+url)
         // data.upload=url
@@ -88,7 +89,7 @@ const SubmitWork = () => {
                 </Row>
                 <Row>
                     <Col>
-                    {progress ? <p>{progress}%</p>:null}
+                    {progress ? <p>{progress}% Uploaded</p>:null}
                     </Col>
                 </Row>
                 {/* <Row>

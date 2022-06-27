@@ -24,7 +24,7 @@ const ShowQuestion = (props) => {
         await axios.delete(props.url, {headers:{"authorization" : `Bearer ${props.token}`},data:{payload}}).then((res) => {
             console.log(res.data)
             toast.success('Deleted successfully')
-            props.state()
+            // props.state()
         }).catch((err) => {
             toast.error('Server error')
             console.log(err)

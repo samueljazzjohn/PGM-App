@@ -11,7 +11,7 @@ import {DashboardHometab} from '../../components'
 import AddNotification from './AddNotification'
 import AssignWorks from './AssignWorks'
 import ViewStudents from './ViewStudents'
-import ViewWorks from './ViewWorks'
+import ViewWorksHome from './viewWorks/ViewWorksHome'
 
 const Teacher = () => {
 
@@ -62,7 +62,7 @@ const Teacher = () => {
         <Route path="/" element={<Dashboard />} />
         <Route path="/add-notification" element={<AddNotification />} />
         <Route path="/view-students" element={<ViewStudents />} />
-        <Route path="/view-works" element={<ViewWorks />} />
+        <Route path="/view-works/*" element={<ViewWorksHome />} />
         <Route path="/assign-works" element={<AssignWorks />} />
       </Routes>
     </div>
