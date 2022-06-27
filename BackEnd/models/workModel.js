@@ -4,13 +4,13 @@ const workSchema = new mongoose.Schema({
     question:{type:String,required:true},
     batch:{type:String,required:true},
     date:{type:String,required:true},
-    answers:{
-        answer:String,
+    answers:[{
+        url:String,
         studentId:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'studentModel'
         }
-    },
+    }],
     teacherId:{type:mongoose.Schema.Types.ObjectId, ref:'teacherModel',required:true},
     courseId:{type:mongoose.Schema.Types.ObjectId, ref:'courseModel',required:true}
 },{collection:'Work'})

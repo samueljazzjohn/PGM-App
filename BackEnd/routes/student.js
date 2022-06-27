@@ -16,6 +16,7 @@ router.get('/view-notification', function(req, res, next) {
   })
 });
 
+// Get all works
 router.get('/view-works',middleware.athenticateToken,async(req,res,next)=>{
   console.log(req.user)
   let details=await StudentModel.findOne({userId:mongoose.Types.ObjectId(req.user.userId)})
@@ -30,9 +31,16 @@ router.get('/view-works',middleware.athenticateToken,async(req,res,next)=>{
   })
 })
 
+// Upload Work
 router.post('/upload-work',middleware.athenticateToken,async(req,res,next)=>{
   console.log(req.body)
-  console.log(req.files)
+  let data={url:req.body.upload,studentId:req.body.id}
+  WorkModel.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.body.id) }, { answers: data }, { upsert: true }).then((doc)=>{
+    console.log(doc)
+    res.status(200).json({"Message":"Success"})
+  }).catch((err)=>{
+    res.status(400).json({"Error":err})
+  })
 })
 
 module.exports = router;
