@@ -9,7 +9,7 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUser } from '../../features/user/userSlice'
 import ShowQuestion from '../../components/showBars/ShowQuestion'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const AssignWorks = () => {
 
@@ -23,22 +23,20 @@ const AssignWorks = () => {
 
   const [loading, setLoading] = useState(false)
   const [courses, setCourses] = useState()
-  const [upload,setUpload] = useState()
+  const [upload, setUpload] = useState()
   const [isButtonClicked, setIsButtonClicked] = useState(false)
-  const [work,setWork] = useState()
+  const [work, setWork] = useState()
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
 
-  const navigate=useNavigate()
+  const navigate = useNavigate()
 
   const user = useSelector(selectUser)
 
   const token = user.token
-  const date=new Date()
 
   const onSubmit = (data) => {
-    data.question=data.question.trim()
-    data={...data,date}
+    data.question = data.question.trim()
     setLoading(true)
     console.log(data)
     axios.post("http://localhost:4000/teacher/assign-works", data, { headers: { "authorization": `Bearer ${token}` } }).then(() => {
@@ -69,7 +67,7 @@ const AssignWorks = () => {
   }, [isButtonClicked])
 
   useEffect(() => {
-    axios.get("http://localhost:4000/teacher/view-works",{ headers: { "authorization": `Bearer ${token}` } }).then((res) => {
+    axios.get("http://localhost:4000/teacher/view-works", { headers: { "authorization": `Bearer ${token}` } }).then((res) => {
       setWork(res.data)
       console.log(res.data)
     }).catch((err) => {
@@ -77,20 +75,7 @@ const AssignWorks = () => {
     })
   }, [!isButtonClicked])
 
-  // const uploadWidget=()=>{
-  //   console.log('inside upload widget')
-  //   window.cloudinary.openUploadWidget({
-  //     cloudName: 'jazzjohn', 
-  //     uploadPreset: 'owk5ulqp'}, (error, result) => { 
-  //       if (!error && result && result.event === "success") { 
-  //         console.log('Done! Here is the image info: ', result.info.url); 
-  //         setUpload(result.info.url)
-  //       }
-  //     }
-  //   )
-  // }
-
-  const handleClick=()=>{
+  const handleClick = () => {
     setIsButtonClicked(!isButtonClicked)
   }
 
@@ -110,86 +95,87 @@ const AssignWorks = () => {
         }
       </Button>
       {
-          !isButtonClicked && <div className="pgm__admin_show_course">
+        !isButtonClicked && <div className="pgm__admin_show_course">
           <div className="pgm__admin_show_course_header">
             <p>Works assigned</p>
           </div>
           <div className="pgm__admin_show">
-            {work && work.map((work,index) => <ShowQuestion key={work._id} url="http://localhost:4000/teacher/remove-work" token={token} name={index+1} course={work.courseId.courseName} question={work.question} id={work._id} date={work.date} state={isButtonClicked} />)}
+            {work && work.map((work, index) => <ShowQuestion key={work._id} url="http://localhost:4000/teacher/remove-work" token={token} name={index + 1} course={work.courseId.courseName} question={work.question} id={work._id} date={work.date} state={isButtonClicked} />)}
           </div>
         </div>
-        }
-      {
-        isButtonClicked && 
-        <div className="pgm__teacher_heading">
-        <h5>Assign Works</h5>
-      </div>
       }
       {
-        isButtonClicked && 
+        isButtonClicked &&
+        <div className="pgm__teacher_heading">
+          <h5>Assign Works</h5>
+        </div>
+      }
+      {
+        isButtonClicked &&
         <Form className="pgm__teacher_assign_works-form" method='POST' onSubmit={handleSubmit(onSubmit)}>
-        <Row>
-          <Col>
-            <label className='pgm__church_form_label' htmlFor="year">Select Year :</label>
-            <Form.Select aria-label="Default select" className='pgm__teacher-form-inputText' {...register('year', {
-              required: true,
-              validate: (year) => {
-                if (year == "--select year--") {
-                  return "Select a year"
-                }
-              }
-            })}>
-              <option>--select year--</option>
-              {/* {years && console.log(years)} */}
-              {years && years.map((year) => <option key={year}>{year}</option>)}
-            </Form.Select>
-          </Col>
-          <Col>
-          <label className='pgm__church_form_label' htmlFor="course">Select Course :</label>
-            {
-              courses &&
-              <Form.Select aria-label="Default select" className='pgm__teacher-form-inputText' {...register('course', {
+          <Row>
+            <Col>
+              <label className='pgm__church_form_label' htmlFor="year">Select Year :</label>
+              <Form.Select aria-label="Default select" className='pgm__teacher-form-inputText' {...register('year', {
                 required: true,
-                validate: (course) => {
-                  if (course == "--select course--") {
-                    return "Select a course"
+                validate: (year) => {
+                  if (year == "--select year--") {
+                    return "Select a year"
                   }
                 }
               })}>
-                <option>--select course--</option>
-                {courses && console.log(courses)}
-                {courses && courses.map((course) => <option key={course._id} value={course._id}>{course.courseName}</option>)}
+                <option>--select year--</option>
+                {/* {years && console.log(years)} */}
+                {years && years.map((year) => <option key={year}>{year}</option>)}
               </Form.Select>
-            }
-            {errors.course && <span className="pgm__register_error" role='alert'>{errors.course.message}</span>}
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-          <label className='pgm__church_form_label' htmlFor="name">Enter the Question :</label>
-          <Form.Control as='textarea' className='pgm__teacher-form-inputText' placeholder='question' style={{ height: '100px' }} {...register('question', { required: "question required", minLength: { value: 5, question: "Username must contain 5 charecters" } })} />
-          {errors.question && <span className="pgm__register_error" role='alert'>{errors.question.message}</span>}
-          </Col>
-        </Row>
-        {/* <Row>
-          <Col>
-          <label className='pgm__church_form_label' htmlFor="name">Choose a file :</label>
-          <Form.Control className='pgm__teacher-form-inputText' type="file" {...register('upload')} />
-          </Col>
-        </Row> */}
-         {/* <Row>
+            </Col>
+            <Col>
+              <label className='pgm__church_form_label' htmlFor="course">Select Course :</label>
+              {
+                courses &&
+                <Form.Select aria-label="Default select" className='pgm__teacher-form-inputText' {...register('course', {
+                  required: true,
+                  validate: (course) => {
+                    if (course == "--select course--") {
+                      return "Select a course"
+                    }
+                  }
+                })}>
+                  <option>--select course--</option>
+                  {courses && console.log(courses)}
+                  {courses && courses.map((course) => <option key={course._id} value={course._id}>{course.courseName}</option>)}
+                </Form.Select>
+              }
+              {errors.course && <span className="pgm__register_error" role='alert'>{errors.course.message}</span>}
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <label className='pgm__church_form_label' htmlFor="name">Enter the Question :</label>
+              <Form.Control as='textarea' className='pgm__teacher-form-inputText' placeholder='question' style={{ height: '100px' }} {...register('question', { required: "question required", minLength: { value: 5, question: "Username must contain 5 charecters" } })} />
+              {errors.question && <span className="pgm__register_error" role='alert'>{errors.question.message}</span>}
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <label className='pgm__church_form_label' htmlFor="date">Enter the deadline date :</label>
+              <Form.Control className="pgm__teacher-form-inputText" type='date'{...register('date', { required: "date do not empty" })}></Form.Control>
+              {errors.date && <span className='pgm__church_form_error' role='alert'>{errors.date.message}</span>}
+            </Col>
+          </Row>
+          {/* <Row>
           <Col>
           <label className='pgm__church_form_label' htmlFor="name">Choose a file :</label>
           <Button className="pgm__teacher_assign_works-upload-button" onClick={uploadWidget}>Upload</Button>
           </Col>
         </Row> */}
-        <Row>
-          <Col>
-          <Button className="pgm__teacher_assign_works-button" disabled={loading} variant="primary" type="submit" >Add</Button>
-          </Col>
-        </Row>
+          <Row>
+            <Col>
+              <Button className="pgm__teacher_assign_works-button" disabled={loading} variant="primary" type="submit" >Add</Button>
+            </Col>
+          </Row>
 
-      </Form>
+        </Form>
       }
     </div>
   )

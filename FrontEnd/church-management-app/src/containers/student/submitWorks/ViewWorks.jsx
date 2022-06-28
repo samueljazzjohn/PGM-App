@@ -33,7 +33,7 @@ const ViewWorks = () => {
         <p>Works</p>
       </div>
       <div className="pgm__admin_show">
-      {works && works.map((work,index) => <ShowQuestion key={work._id} token={token} nav={work._id} name={index+1} course={work.courseId.courseName} question={work.question} id={work._id} date={work.date} state={setLoading} />)}
+      {works && works.map((work,index) => <ShowQuestion key={work._id} navUrl='/student/view-works/submit-work' token={token} nav={work._id} name={index+1} course={work.courseId.courseName} question={work.question} id={work._id} date={work.date} state={setLoading} />)}
       </div>
     </div>
   )

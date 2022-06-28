@@ -32,7 +32,7 @@ const ShowQuestion = (props) => {
     }
 
     const handleClick=()=>{
-        navigate('/student/view-works/submit-work',{state:{id:props.nav}})
+        navigate(props.navUrl,{state:{id:props.nav}})
     }
 
 
@@ -40,7 +40,7 @@ const ShowQuestion = (props) => {
         <div>
             {
             props.nav && 
-            <div className="pgm__question_show_card_container" onClick={handleClick}>
+            <div className="pgm__question_show_card_container" onClick={handleClick} style={{cursor:'pointer'}}>
             <div className="pgm__question_show_card_header">
                 <card className="pgm__show_card_body" body>{props.name}  {props.course && props.course}</card>
                 {props.date && <p>{props.date}</p>}

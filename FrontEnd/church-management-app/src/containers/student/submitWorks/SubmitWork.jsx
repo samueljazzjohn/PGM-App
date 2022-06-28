@@ -23,6 +23,8 @@ const SubmitWork = () => {
     const token = user.token
 
     const { register, handleSubmit, formState: { errors }, watch } = useForm()
+    
+    const date=new Date();
 
     const onSubmit = async (data) => {
         setLoading(true)
@@ -31,7 +33,7 @@ const SubmitWork = () => {
         console.log("post"+url)
         // data.upload=url
         // data.id=state
-        data={upload:url,id:state.id}
+        data={upload:url,id:state.id,submission:date}
         axios.post("http://localhost:4000/student/upload-work", data, { headers: { "authorization": `Bearer ${token}`, "Contetnt-Type": "multipart/form-data" } }).then((res) => {
             setLoading(false)
             toast.success('Answer submitted')
