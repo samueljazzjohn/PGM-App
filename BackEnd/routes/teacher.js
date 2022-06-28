@@ -50,16 +50,14 @@ router.get('/full-student-details', middleware.athenticateToken, async (req, res
     })
     data.push(temp)
   }
-  // console.log("______")
-  // console.log(data)
   res.status(200).json(data)
 })
 
 // Assign works
 router.post('/assign-works',middleware.athenticateToken,async(req,res,next)=>{
   console.log(req.body)
-  const date=req.body.date.substring(0,10)
-  let data={batch:req.body.year,question:req.body.question,courseId:req.body.course,date:date,teacherId:mongoose.Types.ObjectId(req.user.userId)}
+  // const date=req.body.date.substring(0,10)
+  let data={batch:req.body.year,question:req.body.question,courseId:req.body.course,deadline:req.body.date,teacherId:mongoose.Types.ObjectId(req.user.userId)}
   WorkModel.create(data).then((doc)=>{
     res.status(200).json({"Message":"Success"})
   }).catch((err)=>{
@@ -87,6 +85,15 @@ router.delete('/remove-work',middleware.athenticateToken,async(req,res,next)=>{
   res.status(200).json({"Message":"Success"})
 })
 
-
+// Get answers
+router.get('/get-answers',async(req,res,next)=>{
+  console.log(req.query)
+  WorkModel.findOne({_id:mongoose.Types.ObjectId(req.query.id)},'answers -_id').populate('answers.studentId').then((doc)=>{
+    console.log(doc)
+    res.status(200).json(doc.answers)
+  }).catch((err)=>{
+    res.status(400).json({"Error":err})
+  })
+})
 
 module.exports = router;

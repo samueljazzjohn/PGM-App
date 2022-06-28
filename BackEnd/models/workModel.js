@@ -3,9 +3,10 @@ const mongoose = require('mongoose')
 const workSchema = new mongoose.Schema({
     question:{type:String,required:true},
     batch:{type:String,required:true},
-    date:{type:String,required:true},
+    deadline:{type:String,required:true},
     answers:[{
         url:String,
+        submission:String,
         studentId:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'studentModel'
