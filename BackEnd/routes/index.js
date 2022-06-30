@@ -6,6 +6,7 @@ const churchModel = require('../models/churchModel')
 const StudentModel = require('../models/studentModel')
 const TeacherModel = require('../models/teacherModel')
 const CourseModel = require('../models/courseModel')
+const EventModel = require('../models/eventModel')
 const mailSendHelper = require("../helpers/mailSendHelper")
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
@@ -160,6 +161,16 @@ router.post('/login', function (req, res, next) {
 // Get all course details
 router.get('/course',async(req,res,next)=>{
   data=await CourseModel.find()
+  if(!data){
+    return res.status(401).json({"Message":failed})
+  }
+  return res.status(200).json(data)
+})
+
+// Get event details 
+router.get('/events',async(req,res,next)=>{
+  data=await EventModel.find().sort({date: 'desc'}).limit(3)
+  console.log(data)
   if(!data){
     return res.status(401).json({"Message":failed})
   }
