@@ -9,9 +9,9 @@ export const showModelSlice = createSlice({
     name : 'showModel',
     initialState,
     reducers : {
-        showModelOpen : (state,payload)=>{
+        showModelOpen : (state,actions)=>{
             state.show=true
-            state.invite=payload
+            state.invite=actions.payload
         },
         showModelClose : (state)=>{
             state.show=false

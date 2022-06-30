@@ -21,7 +21,7 @@ const ShowBar = (props) => {
                 <card className="pgm__show_card_body" body>{props.name}</card>
                 {props.submission && <p>{props.submission}</p>}
             </div>
-            <Button className="pgm__show_answer_button"><a href={props.url}>View</a></Button>
+            <Button className="pgm__show_answer_button"><a href={props.url} target='_blank'>View</a></Button>
         </div>
     )
 }

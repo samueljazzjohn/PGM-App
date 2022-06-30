@@ -31,7 +31,8 @@ const DashboardHometab = () => {
   }
 
   const handleAccount = () => {
-    console.log("image pressed")
+    dispatch(logout())
+    navigate('/')
   }
 
   const handleLogOut = () => {
@@ -49,7 +50,7 @@ const DashboardHometab = () => {
         <p>{user!=null && user.username}</p>
         <div className="dropdown">
           <button className="toggle-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="avatar" />
+            <img src="https://www.w3schools.com/howto/img_avatar.png" onClick={handleAccount} alt="avatar" />
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <p className="dropdown-item" onClick={handleLogOut}>Logout</p>

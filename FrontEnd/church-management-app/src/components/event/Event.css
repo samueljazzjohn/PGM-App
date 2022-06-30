@@ -59,5 +59,6 @@
 .pgm__event-card-title{
     text-align: center;
     color: var(--color-text);
+    margin-bottom: 1rem;
 
 }
