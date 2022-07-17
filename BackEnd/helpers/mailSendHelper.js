@@ -44,6 +44,33 @@ let transport = nodemailer.createTransport({
           return res.status(401).json({"Error":err})
         } 
     });
-    }
+    },
+
+    paymentMail : (mail) => {
+      const mailOptions = {
+          from: 'sender@gmail.com', // Sender address
+          to: mail, // List of recipients
+          subject: 'Registration', // Subject line
+          text: `<html>
+          <body>
+          <div>
+          Payment successfull
+          </div>
+          <div>
+          Thank you for your donation. God bless you.
+          </div>
+          </body>
+          </html>`, // Plain text body
+        };
+        transport.sendMail(mailOptions, function(err, info) {
+          if (err) {
+            console.log(err)
+            res.status(401).json({"Error":err})
+          } else {
+            res.status(201).json({"Message":"Mail send successfully"})
+            // console.log(info);
+          }
+      });
+  },
   }
 

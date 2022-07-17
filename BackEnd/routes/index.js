@@ -7,12 +7,62 @@ const StudentModel = require('../models/studentModel')
 const TeacherModel = require('../models/teacherModel')
 const CourseModel = require('../models/courseModel')
 const EventModel = require('../models/eventModel')
+const DonationModel = require('../models/donationModel')
 const mailSendHelper = require("../helpers/mailSendHelper")
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const dotenv=require('dotenv')
+const shortid = require('shortid')
+const Razorpay = require('razorpay')
 
 dotenv.config()
+
+const razorpay = new Razorpay({
+	key_id: process.env.RAZORPAY_ID,
+	key_secret: process.env.RAZORPAY_SECRET
+})
+
+router.post('/razorpay', async (req, res) => {
+  console.log(req.body)
+	const payment_capture = 1
+	const amount = req.body.amount
+	const currency = 'INR'
+
+	const options = {
+		amount: amount * 100,
+		currency,
+		receipt: shortid.generate(),
+		payment_capture
+	}
+
+	try {
+		const response = await razorpay.orders.create(options)
+		console.log(response)
+		res.json({
+			id: response.id,
+			currency: response.currency,
+			amount: response.amount,
+      donator:req.body.name,
+      email:req.body.email,
+      phone:req.body.email
+		})
+	} catch (error) {
+		console.log(error)
+	}
+})
+
+router.post('/payment/complete',(req,res)=>{
+  console.log(req.body)
+  let donationDate=new Date().toString()
+  donationDate=donationDate.substring(0, 10)
+  const data={...req.body,donationDate}
+  DonationModel.create(data).then((doc)=>{
+    mailSendHelper.paymentMail(req.body.email)
+    res.status(200)
+  }).catch((err)=>{
+    res.status(401)
+  })
+})
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -122,7 +172,7 @@ router.post('/register', (req, res, next) => {
 
 // Login end point
 router.post('/login', function (req, res, next) {
-  console.log(req.body)
+  console.log(req.body.password[0])
   UserModel.findOne({ email: req.body.email }, async (err, doc) => {
     if (err) return res.status(400).json({ "Message": err });
     if (doc == null) {
@@ -130,30 +180,34 @@ router.post('/login', function (req, res, next) {
     }
 
     console.log(doc)
+
     if (doc.status === 'Pending') {
       return res.status(402).json({ "Message": "Your account is not approved by admin" })
     }
 
-    bcrypt.compare(req.body.password, doc.password, (err, res) => {
-      if (err) {
-        return res.status(403).json(err)
-      }
-      if (!res) {
-        return res.status(404).json({ "Message": "Invalid password" })
-      }
-    })
-
-    let data = {
-      userId: doc._id,
-      email: doc.email,
-      username: doc.username,
-      type: doc.type
+    else{
+      bcrypt.compare(req.body.password[0], doc.password, (err, doc) => {
+        if (err) {
+          console.log(err)
+          return res.status(403).json({ "Message": "Server error " })
+        }
+        if (!doc) {
+          return res.status(404).json({ "Message": "Invalid password" })
+        }else{
+          let data = {
+            userId: doc._id,
+            email: doc.email,
+            username: doc.username,
+            type: doc.type
+          }
+          const token = jwt.sign(JSON.stringify(data),process.env.JWT_SECRET_KEY);
+      
+          data={...data,token:token}
+          // console.log(data)
+          res.status(202).json(data)
+        }
+      })
     }
-    const token = jwt.sign(JSON.stringify(data),process.env.JWT_SECRET_KEY);
-
-    data={...data,token:token}
-    // console.log(data)
-    res.status(202).json(data)
   })
 });
 
