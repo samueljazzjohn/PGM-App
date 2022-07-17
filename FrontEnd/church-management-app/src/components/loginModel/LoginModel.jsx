@@ -98,6 +98,7 @@ const LoginModel = () => {
                     }
                     <Form.Control type='email' className='pgm__contact-form-inputText' label="Email" placeholder="Email" name="email" value={email} onChange={changeHandler} autoComplete="off" />
                     <Form.Control type='password' className='pgm__contact-form-inputText' placeholder="Password" name="password" value={password} onChange={changeHandler} autoComplete="off" />
+                    
                     <div className="pgm__login_model_button_container">
                         <Button className="pgm__login-model-button" variant="secondary" onClick={() => dispatch(loginModelClose())}>
                             back

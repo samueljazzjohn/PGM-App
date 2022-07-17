@@ -25,8 +25,8 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async ({data,navigat
         }
         return response.data
     }catch(err){
-        toast.error('Login Failed')
-        console.log(err)
+        toast.error(err.response.data.Message)
+        console.log(err.response.data.Message)
     }
 })
 

@@ -1,0 +1,26 @@
+.donate_page-content-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.donate_page-content{
+    flex: 1;
+}
+
+.donate_page-form-container{
+    flex:1;
+}
+
+.pgm_donation_form-label{
+    color:var(--color-text);
+    margin-top:0.5rem;
+    margin-bottom: -2rem !important;
+}
+
+.pgm_donate_button{
+    margin: 1rem 3rem 1rem 0 !important;
+    width: 100% !important;
+    background-color: var(--color-btn) !important;
+    border: none !important;
+    cursor: pointer;
+}

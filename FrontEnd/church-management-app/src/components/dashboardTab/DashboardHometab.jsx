@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import './dashboardTab.css'
-import { Form } from 'react-bootstrap'
+import { Form,Button } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { FiSearch } from 'react-icons/fi'
 import { useSelector, useDispatch } from 'react-redux'
@@ -48,15 +48,8 @@ const DashboardHometab = () => {
       </div>
       <div className="pgm__dashboard_user">
         <p>{user!=null && user.username}</p>
-        <div className="dropdown">
-          <button className="toggle-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="https://www.w3schools.com/howto/img_avatar.png" onClick={handleAccount} alt="avatar" />
-          </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <p className="dropdown-item" onClick={handleLogOut}>Logout</p>
-            {/* <a></a> */}
-          </div>
-        </div>
+          <img src="https://www.w3schools.com/howto/img_avatar.png" alt="avatar" />
+          <Button className="pgm__logout_button" variant='danger' onClick={handleLogOut} >Logout</Button>
       </div>
     </div>
   )

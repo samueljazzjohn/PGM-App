@@ -16,8 +16,8 @@ export const registerUser = createAsyncThunk('user/registerUser', async ({data,n
         return response.data
     }catch(err){
         navigate('/')
-        toast.error('Registration failed')
-        console.log(err)
+        toast.error(err.response.data.Message)
+        console.log(err.response.data.Message)
     }
 })
 

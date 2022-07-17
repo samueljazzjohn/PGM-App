@@ -67,7 +67,6 @@
     height: 35px;
     width: 35px;
     background-size: cover;
-    cursor: pointer;
 }
 
 .pgm__dashboard_user{
@@ -77,4 +76,18 @@
 
 .pgm__dashboard_user p{
     margin: 0.5rem 0.5rem 0rem 0rem;
+}
+
+.pgm__logout_button{
+    padding: 0.2rem 1rem !important;
+    color: #fff !important;
+    background: #FF4820 !important;
+    font-family: var(--font-family) !important;
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    line-height: 25px !important;
+    border: none !important;
+    outline: none !important;
+    cursor: pointer !important;
+    border-radius: 5px !important;
 }

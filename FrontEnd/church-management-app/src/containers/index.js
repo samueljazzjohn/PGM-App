@@ -8,4 +8,5 @@ export { default as Student } from "./student/Student"
 export { default as Admin } from "./admin/Admin"
 export { default as Teacher } from "./teacher/Teacher"
 export { default as Church } from "./church/Church"
+export { default as DonatePage } from "./payment/DonatePage"
 

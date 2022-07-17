@@ -69,7 +69,7 @@ const AddRevenueExp = () => {
         <div className="pgm__church_add_revenue_exp_container">
             <div className="pgm__church_add_revenue_exp_form_container section__padding">
                 <div className="pgm__church_revenue_exp_form_header">
-                    <h5>Add Revenue Exhpense Details</h5>
+                    <h5>Add Revenue Expense Details</h5>
                 </div>
                 <Form method='POST' className='pgm__church_add_revenue_exp_form' onSubmit={handleSubmit(onSubmit)}>
                     {/* <Row> */}
